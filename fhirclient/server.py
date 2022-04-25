@@ -160,6 +160,7 @@ class FHIRServer(object):
         :returns: Decoded JSON response
         """
         headers = {'Accept': 'application/json'}
+        headers = {'Accept': 'application/fhir+json'}
         res = self._get(path, headers, nosign)
         
         return res.json()

@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Resource) on 2019-05-07.
-#  2019, SMART Health IT.
+#  Generated from FHIR 4.0.1-9346c8cc45 (http://hl7.org/fhir/StructureDefinition/Resource) on 2022-05-02.
+#  2022, SMART Health IT.
 
 
 from . import fhirabstractresource
@@ -27,6 +27,10 @@ class Resource(fhirabstractresource.FHIRAbstractResource):
         """ Logical id of this artifact.
         Type `str`. """
         
+        self.meta = None
+        """ Metadata about the resource.
+        Type `Meta` (represented as `dict` in JSON). """
+        
         self.implicitRules = None
         """ A set of rules under which this content was created.
         Type `str`. """
@@ -35,19 +39,15 @@ class Resource(fhirabstractresource.FHIRAbstractResource):
         """ Language of the resource content.
         Type `str`. """
         
-        self.meta = None
-        """ Metadata about the resource.
-        Type `Meta` (represented as `dict` in JSON). """
-        
         super(Resource, self).__init__(jsondict=jsondict, strict=strict)
     
     def elementProperties(self):
         js = super(Resource, self).elementProperties()
         js.extend([
             ("id", "id", str, False, None, False),
+            ("meta", "meta", meta.Meta, False, None, False),
             ("implicitRules", "implicitRules", str, False, None, False),
             ("language", "language", str, False, None, False),
-            ("meta", "meta", meta.Meta, False, None, False),
         ])
         return js
 

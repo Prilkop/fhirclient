@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SupplyRequest) on 2019-05-07.
-#  2019, SMART Health IT.
+#  Generated from FHIR 4.0.1-9346c8cc45 (http://hl7.org/fhir/StructureDefinition/SupplyRequest) on 2022-05-02.
+#  2022, SMART Health IT.
 
 
 from . import domainresource
@@ -24,25 +24,21 @@ class SupplyRequest(domainresource.DomainResource):
         :param bool strict: If True (the default), invalid variables will raise a TypeError
         """
         
-        self.authoredOn = None
-        """ When the request was made.
-        Type `FHIRDate` (represented as `str` in JSON). """
+        self.identifier = None
+        """ Business Identifier for SupplyRequest.
+        List of `Identifier` items (represented as `dict` in JSON). """
+        
+        self.status = None
+        """ draft | active | suspended +.
+        Type `str`. """
         
         self.category = None
         """ The kind of supply (central, non-stock, etc.).
         Type `CodeableConcept` (represented as `dict` in JSON). """
         
-        self.deliverFrom = None
-        """ The origin of the supply.
-        Type `FHIRReference` (represented as `dict` in JSON). """
-        
-        self.deliverTo = None
-        """ The destination of the supply.
-        Type `FHIRReference` (represented as `dict` in JSON). """
-        
-        self.identifier = None
-        """ Business Identifier for SupplyRequest.
-        List of `Identifier` items (represented as `dict` in JSON). """
+        self.priority = None
+        """ routine | urgent | asap | stat.
+        Type `str`. """
         
         self.itemCodeableConcept = None
         """ Medication, Substance, or Device requested to be supplied.
@@ -51,6 +47,14 @@ class SupplyRequest(domainresource.DomainResource):
         self.itemReference = None
         """ Medication, Substance, or Device requested to be supplied.
         Type `FHIRReference` (represented as `dict` in JSON). """
+        
+        self.quantity = None
+        """ The requested amount of the item indicated.
+        Type `Quantity` (represented as `dict` in JSON). """
+        
+        self.parameter = None
+        """ Ordered item details.
+        List of `SupplyRequestParameter` items (represented as `dict` in JSON). """
         
         self.occurrenceDateTime = None
         """ When the request should be fulfilled.
@@ -64,17 +68,17 @@ class SupplyRequest(domainresource.DomainResource):
         """ When the request should be fulfilled.
         Type `Timing` (represented as `dict` in JSON). """
         
-        self.parameter = None
-        """ Ordered item details.
-        List of `SupplyRequestParameter` items (represented as `dict` in JSON). """
+        self.authoredOn = None
+        """ When the request was made.
+        Type `FHIRDate` (represented as `str` in JSON). """
         
-        self.priority = None
-        """ routine | urgent | asap | stat.
-        Type `str`. """
+        self.requester = None
+        """ Individual making the request.
+        Type `FHIRReference` (represented as `dict` in JSON). """
         
-        self.quantity = None
-        """ The requested amount of the item indicated.
-        Type `Quantity` (represented as `dict` in JSON). """
+        self.supplier = None
+        """ Who is intended to fulfill the request.
+        List of `FHIRReference` items (represented as `dict` in JSON). """
         
         self.reasonCode = None
         """ The reason why the supply item was requested.
@@ -84,41 +88,37 @@ class SupplyRequest(domainresource.DomainResource):
         """ The reason why the supply item was requested.
         List of `FHIRReference` items (represented as `dict` in JSON). """
         
-        self.requester = None
-        """ Individual making the request.
+        self.deliverFrom = None
+        """ The origin of the supply.
         Type `FHIRReference` (represented as `dict` in JSON). """
         
-        self.status = None
-        """ draft | active | suspended +.
-        Type `str`. """
-        
-        self.supplier = None
-        """ Who is intended to fulfill the request.
-        List of `FHIRReference` items (represented as `dict` in JSON). """
+        self.deliverTo = None
+        """ The destination of the supply.
+        Type `FHIRReference` (represented as `dict` in JSON). """
         
         super(SupplyRequest, self).__init__(jsondict=jsondict, strict=strict)
     
     def elementProperties(self):
         js = super(SupplyRequest, self).elementProperties()
         js.extend([
-            ("authoredOn", "authoredOn", fhirdate.FHIRDate, False, None, False),
-            ("category", "category", codeableconcept.CodeableConcept, False, None, False),
-            ("deliverFrom", "deliverFrom", fhirreference.FHIRReference, False, None, False),
-            ("deliverTo", "deliverTo", fhirreference.FHIRReference, False, None, False),
             ("identifier", "identifier", identifier.Identifier, True, None, False),
+            ("status", "status", str, False, None, False),
+            ("category", "category", codeableconcept.CodeableConcept, False, None, False),
+            ("priority", "priority", str, False, None, False),
             ("itemCodeableConcept", "itemCodeableConcept", codeableconcept.CodeableConcept, False, "item", True),
             ("itemReference", "itemReference", fhirreference.FHIRReference, False, "item", True),
+            ("quantity", "quantity", quantity.Quantity, False, None, True),
+            ("parameter", "parameter", SupplyRequestParameter, True, None, False),
             ("occurrenceDateTime", "occurrenceDateTime", fhirdate.FHIRDate, False, "occurrence", False),
             ("occurrencePeriod", "occurrencePeriod", period.Period, False, "occurrence", False),
             ("occurrenceTiming", "occurrenceTiming", timing.Timing, False, "occurrence", False),
-            ("parameter", "parameter", SupplyRequestParameter, True, None, False),
-            ("priority", "priority", str, False, None, False),
-            ("quantity", "quantity", quantity.Quantity, False, None, True),
+            ("authoredOn", "authoredOn", fhirdate.FHIRDate, False, None, False),
+            ("requester", "requester", fhirreference.FHIRReference, False, None, False),
+            ("supplier", "supplier", fhirreference.FHIRReference, True, None, False),
             ("reasonCode", "reasonCode", codeableconcept.CodeableConcept, True, None, False),
             ("reasonReference", "reasonReference", fhirreference.FHIRReference, True, None, False),
-            ("requester", "requester", fhirreference.FHIRReference, False, None, False),
-            ("status", "status", str, False, None, False),
-            ("supplier", "supplier", fhirreference.FHIRReference, True, None, False),
+            ("deliverFrom", "deliverFrom", fhirreference.FHIRReference, False, None, False),
+            ("deliverTo", "deliverTo", fhirreference.FHIRReference, False, None, False),
         ])
         return js
 
@@ -132,8 +132,6 @@ class SupplyRequestParameter(backboneelement.BackboneElement):
     indicated item.
     """
     
-    resource_type = "SupplyRequestParameter"
-    
     def __init__(self, jsondict=None, strict=True):
         """ Initialize all valid properties.
         
@@ -145,10 +143,6 @@ class SupplyRequestParameter(backboneelement.BackboneElement):
         self.code = None
         """ Item detail.
         Type `CodeableConcept` (represented as `dict` in JSON). """
-        
-        self.valueBoolean = None
-        """ Value of detail.
-        Type `bool`. """
         
         self.valueCodeableConcept = None
         """ Value of detail.
@@ -162,16 +156,20 @@ class SupplyRequestParameter(backboneelement.BackboneElement):
         """ Value of detail.
         Type `Range` (represented as `dict` in JSON). """
         
+        self.valueBoolean = None
+        """ Value of detail.
+        Type `bool`. """
+        
         super(SupplyRequestParameter, self).__init__(jsondict=jsondict, strict=strict)
     
     def elementProperties(self):
         js = super(SupplyRequestParameter, self).elementProperties()
         js.extend([
             ("code", "code", codeableconcept.CodeableConcept, False, None, False),
-            ("valueBoolean", "valueBoolean", bool, False, "value", False),
             ("valueCodeableConcept", "valueCodeableConcept", codeableconcept.CodeableConcept, False, "value", False),
             ("valueQuantity", "valueQuantity", quantity.Quantity, False, "value", False),
             ("valueRange", "valueRange", range.Range, False, "value", False),
+            ("valueBoolean", "valueBoolean", bool, False, "value", False),
         ])
         return js
 

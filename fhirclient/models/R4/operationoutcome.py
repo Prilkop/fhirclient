@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2019-05-07.
-#  2019, SMART Health IT.
+#  Generated from FHIR 4.0.1-9346c8cc45 (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2022-05-02.
+#  2022, SMART Health IT.
 
 
 from . import domainresource
@@ -47,8 +47,6 @@ class OperationOutcomeIssue(backboneelement.BackboneElement):
     action.
     """
     
-    resource_type = "OperationOutcomeIssue"
-    
     def __init__(self, jsondict=None, strict=True):
         """ Initialize all valid properties.
         
@@ -56,6 +54,10 @@ class OperationOutcomeIssue(backboneelement.BackboneElement):
         :param dict jsondict: A JSON dictionary to use for initialization
         :param bool strict: If True (the default), invalid variables will raise a TypeError
         """
+        
+        self.severity = None
+        """ fatal | error | warning | information.
+        Type `str`. """
         
         self.code = None
         """ Error or warning code.
@@ -69,29 +71,25 @@ class OperationOutcomeIssue(backboneelement.BackboneElement):
         """ Additional diagnostic information about the issue.
         Type `str`. """
         
-        self.expression = None
-        """ FHIRPath of element(s) related to issue.
-        List of `str` items. """
-        
         self.location = None
         """ Deprecated: Path of element(s) related to issue.
         List of `str` items. """
         
-        self.severity = None
-        """ fatal | error | warning | information.
-        Type `str`. """
+        self.expression = None
+        """ FHIRPath of element(s) related to issue.
+        List of `str` items. """
         
         super(OperationOutcomeIssue, self).__init__(jsondict=jsondict, strict=strict)
     
     def elementProperties(self):
         js = super(OperationOutcomeIssue, self).elementProperties()
         js.extend([
+            ("severity", "severity", str, False, None, True),
             ("code", "code", str, False, None, True),
             ("details", "details", codeableconcept.CodeableConcept, False, None, False),
             ("diagnostics", "diagnostics", str, False, None, False),
-            ("expression", "expression", str, True, None, False),
             ("location", "location", str, True, None, False),
-            ("severity", "severity", str, False, None, True),
+            ("expression", "expression", str, True, None, False),
         ])
         return js
 

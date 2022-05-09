@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Bundle) on 2019-05-07.
-#  2019, SMART Health IT.
+#  Generated from FHIR 4.0.1-9346c8cc45 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2022-05-02.
+#  2022, SMART Health IT.
 
 
 from . import resource
@@ -23,21 +23,14 @@ class Bundle(resource.Resource):
         :param bool strict: If True (the default), invalid variables will raise a TypeError
         """
         
-        self.entry = None
-        """ Entry in the bundle - will have a resource or information.
-        List of `BundleEntry` items (represented as `dict` in JSON). """
-        
         self.identifier = None
         """ Persistent identifier for the bundle.
         Type `Identifier` (represented as `dict` in JSON). """
         
-        self.link = None
-        """ Links related to this Bundle.
-        List of `BundleLink` items (represented as `dict` in JSON). """
-        
-        self.signature = None
-        """ Digital Signature.
-        Type `Signature` (represented as `dict` in JSON). """
+        self.type = None
+        """ document | message | transaction | transaction-response | batch |
+        batch-response | history | searchset | collection.
+        Type `str`. """
         
         self.timestamp = None
         """ When the bundle was assembled.
@@ -47,23 +40,30 @@ class Bundle(resource.Resource):
         """ If search, the total number of matches.
         Type `int`. """
         
-        self.type = None
-        """ document | message | transaction | transaction-response | batch |
-        batch-response | history | searchset | collection.
-        Type `str`. """
+        self.link = None
+        """ Links related to this Bundle.
+        List of `BundleLink` items (represented as `dict` in JSON). """
+        
+        self.entry = None
+        """ Entry in the bundle - will have a resource or information.
+        List of `BundleEntry` items (represented as `dict` in JSON). """
+        
+        self.signature = None
+        """ Digital Signature.
+        Type `Signature` (represented as `dict` in JSON). """
         
         super(Bundle, self).__init__(jsondict=jsondict, strict=strict)
     
     def elementProperties(self):
         js = super(Bundle, self).elementProperties()
         js.extend([
-            ("entry", "entry", BundleEntry, True, None, False),
             ("identifier", "identifier", identifier.Identifier, False, None, False),
-            ("link", "link", BundleLink, True, None, False),
-            ("signature", "signature", signature.Signature, False, None, False),
+            ("type", "type", str, False, None, True),
             ("timestamp", "timestamp", fhirdate.FHIRDate, False, None, False),
             ("total", "total", int, False, None, False),
-            ("type", "type", str, False, None, True),
+            ("link", "link", BundleLink, True, None, False),
+            ("entry", "entry", BundleEntry, True, None, False),
+            ("signature", "signature", signature.Signature, False, None, False),
         ])
         return js
 
@@ -77,8 +77,6 @@ class BundleEntry(backboneelement.BackboneElement):
     information about a resource (transactions and history only).
     """
     
-    resource_type = "BundleEntry"
-    
     def __init__(self, jsondict=None, strict=True):
         """ Initialize all valid properties.
         
@@ -87,41 +85,41 @@ class BundleEntry(backboneelement.BackboneElement):
         :param bool strict: If True (the default), invalid variables will raise a TypeError
         """
         
-        self.fullUrl = None
-        """ URI for resource (Absolute URL server address or URI for UUID/OID).
-        Type `str`. """
-        
         self.link = None
         """ Links related to this entry.
         List of `BundleLink` items (represented as `dict` in JSON). """
         
-        self.request = None
-        """ Additional execution information (transaction/batch/history).
-        Type `BundleEntryRequest` (represented as `dict` in JSON). """
+        self.fullUrl = None
+        """ URI for resource (Absolute URL server address or URI for UUID/OID).
+        Type `str`. """
         
         self.resource = None
         """ A resource in the bundle.
         Type `Resource` (represented as `dict` in JSON). """
         
-        self.response = None
-        """ Results of execution (transaction/batch/history).
-        Type `BundleEntryResponse` (represented as `dict` in JSON). """
-        
         self.search = None
         """ Search related information.
         Type `BundleEntrySearch` (represented as `dict` in JSON). """
+        
+        self.request = None
+        """ Additional execution information (transaction/batch/history).
+        Type `BundleEntryRequest` (represented as `dict` in JSON). """
+        
+        self.response = None
+        """ Results of execution (transaction/batch/history).
+        Type `BundleEntryResponse` (represented as `dict` in JSON). """
         
         super(BundleEntry, self).__init__(jsondict=jsondict, strict=strict)
     
     def elementProperties(self):
         js = super(BundleEntry, self).elementProperties()
         js.extend([
-            ("fullUrl", "fullUrl", str, False, None, False),
             ("link", "link", BundleLink, True, None, False),
-            ("request", "request", BundleEntryRequest, False, None, False),
+            ("fullUrl", "fullUrl", str, False, None, False),
             ("resource", "resource", resource.Resource, False, None, False),
-            ("response", "response", BundleEntryResponse, False, None, False),
             ("search", "search", BundleEntrySearch, False, None, False),
+            ("request", "request", BundleEntryRequest, False, None, False),
+            ("response", "response", BundleEntryResponse, False, None, False),
         ])
         return js
 
@@ -134,8 +132,6 @@ class BundleEntryRequest(backboneelement.BackboneElement):
     to create the version contained in the entry.
     """
     
-    resource_type = "BundleEntryRequest"
-    
     def __init__(self, jsondict=None, strict=True):
         """ Initialize all valid properties.
         
@@ -143,22 +139,6 @@ class BundleEntryRequest(backboneelement.BackboneElement):
         :param dict jsondict: A JSON dictionary to use for initialization
         :param bool strict: If True (the default), invalid variables will raise a TypeError
         """
-        
-        self.ifMatch = None
-        """ For managing update contention.
-        Type `str`. """
-        
-        self.ifModifiedSince = None
-        """ For managing cache currency.
-        Type `FHIRDate` (represented as `str` in JSON). """
-        
-        self.ifNoneExist = None
-        """ For conditional creates.
-        Type `str`. """
-        
-        self.ifNoneMatch = None
-        """ For managing cache currency.
-        Type `str`. """
         
         self.method = None
         """ GET | HEAD | POST | PUT | DELETE | PATCH.
@@ -168,17 +148,33 @@ class BundleEntryRequest(backboneelement.BackboneElement):
         """ URL for HTTP equivalent of this entry.
         Type `str`. """
         
+        self.ifNoneMatch = None
+        """ For managing cache currency.
+        Type `str`. """
+        
+        self.ifModifiedSince = None
+        """ For managing cache currency.
+        Type `FHIRDate` (represented as `str` in JSON). """
+        
+        self.ifMatch = None
+        """ For managing update contention.
+        Type `str`. """
+        
+        self.ifNoneExist = None
+        """ For conditional creates.
+        Type `str`. """
+        
         super(BundleEntryRequest, self).__init__(jsondict=jsondict, strict=strict)
     
     def elementProperties(self):
         js = super(BundleEntryRequest, self).elementProperties()
         js.extend([
-            ("ifMatch", "ifMatch", str, False, None, False),
-            ("ifModifiedSince", "ifModifiedSince", fhirdate.FHIRDate, False, None, False),
-            ("ifNoneExist", "ifNoneExist", str, False, None, False),
-            ("ifNoneMatch", "ifNoneMatch", str, False, None, False),
             ("method", "method", str, False, None, True),
             ("url", "url", str, False, None, True),
+            ("ifNoneMatch", "ifNoneMatch", str, False, None, False),
+            ("ifModifiedSince", "ifModifiedSince", fhirdate.FHIRDate, False, None, False),
+            ("ifMatch", "ifMatch", str, False, None, False),
+            ("ifNoneExist", "ifNoneExist", str, False, None, False),
         ])
         return js
 
@@ -191,8 +187,6 @@ class BundleEntryResponse(backboneelement.BackboneElement):
     operation where when returning history.
     """
     
-    resource_type = "BundleEntryResponse"
-    
     def __init__(self, jsondict=None, strict=True):
         """ Initialize all valid properties.
         
@@ -200,6 +194,14 @@ class BundleEntryResponse(backboneelement.BackboneElement):
         :param dict jsondict: A JSON dictionary to use for initialization
         :param bool strict: If True (the default), invalid variables will raise a TypeError
         """
+        
+        self.status = None
+        """ Status response code (text optional).
+        Type `str`. """
+        
+        self.location = None
+        """ The location (if the operation returns a location).
+        Type `str`. """
         
         self.etag = None
         """ The Etag for the resource (if relevant).
@@ -209,28 +211,20 @@ class BundleEntryResponse(backboneelement.BackboneElement):
         """ Server's date time modified.
         Type `FHIRDate` (represented as `str` in JSON). """
         
-        self.location = None
-        """ The location (if the operation returns a location).
-        Type `str`. """
-        
         self.outcome = None
         """ OperationOutcome with hints and warnings (for batch/transaction).
         Type `Resource` (represented as `dict` in JSON). """
-        
-        self.status = None
-        """ Status response code (text optional).
-        Type `str`. """
         
         super(BundleEntryResponse, self).__init__(jsondict=jsondict, strict=strict)
     
     def elementProperties(self):
         js = super(BundleEntryResponse, self).elementProperties()
         js.extend([
+            ("status", "status", str, False, None, True),
+            ("location", "location", str, False, None, False),
             ("etag", "etag", str, False, None, False),
             ("lastModified", "lastModified", fhirdate.FHIRDate, False, None, False),
-            ("location", "location", str, False, None, False),
             ("outcome", "outcome", resource.Resource, False, None, False),
-            ("status", "status", str, False, None, True),
         ])
         return js
 
@@ -241,8 +235,6 @@ class BundleEntrySearch(backboneelement.BackboneElement):
     Information about the search process that lead to the creation of this
     entry.
     """
-    
-    resource_type = "BundleEntrySearch"
     
     def __init__(self, jsondict=None, strict=True):
         """ Initialize all valid properties.
@@ -276,8 +268,6 @@ class BundleLink(backboneelement.BackboneElement):
     
     A series of links that provide context to this bundle.
     """
-    
-    resource_type = "BundleLink"
     
     def __init__(self, jsondict=None, strict=True):
         """ Initialize all valid properties.

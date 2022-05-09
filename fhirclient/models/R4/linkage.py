@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Linkage) on 2019-05-07.
-#  2019, SMART Health IT.
+#  Generated from FHIR 4.0.1-9346c8cc45 (http://hl7.org/fhir/StructureDefinition/Linkage) on 2022-05-02.
+#  2022, SMART Health IT.
 
 
 from . import domainresource
@@ -58,8 +58,6 @@ class LinkageItem(backboneelement.BackboneElement):
     collection of linked items.
     """
     
-    resource_type = "LinkageItem"
-    
     def __init__(self, jsondict=None, strict=True):
         """ Initialize all valid properties.
         
@@ -68,21 +66,21 @@ class LinkageItem(backboneelement.BackboneElement):
         :param bool strict: If True (the default), invalid variables will raise a TypeError
         """
         
-        self.resource = None
-        """ Resource being linked.
-        Type `FHIRReference` (represented as `dict` in JSON). """
-        
         self.type = None
         """ source | alternate | historical.
         Type `str`. """
+        
+        self.resource = None
+        """ Resource being linked.
+        Type `FHIRReference` (represented as `dict` in JSON). """
         
         super(LinkageItem, self).__init__(jsondict=jsondict, strict=strict)
     
     def elementProperties(self):
         js = super(LinkageItem, self).elementProperties()
         js.extend([
-            ("resource", "resource", fhirreference.FHIRReference, False, None, True),
             ("type", "type", str, False, None, True),
+            ("resource", "resource", fhirreference.FHIRReference, False, None, True),
         ])
         return js
 

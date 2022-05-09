@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Coverage) on 2019-05-07.
-#  2019, SMART Health IT.
+#  Generated from FHIR 4.0.1-9346c8cc45 (http://hl7.org/fhir/StructureDefinition/Coverage) on 2022-05-02.
+#  2022, SMART Health IT.
 
 
 from . import domainresource
@@ -24,61 +24,21 @@ class Coverage(domainresource.DomainResource):
         :param bool strict: If True (the default), invalid variables will raise a TypeError
         """
         
-        self.beneficiary = None
-        """ Plan beneficiary.
-        Type `FHIRReference` (represented as `dict` in JSON). """
-        
-        self.class_fhir = None
-        """ Additional coverage classifications.
-        List of `CoverageClass` items (represented as `dict` in JSON). """
-        
-        self.contract = None
-        """ Contract details.
-        List of `FHIRReference` items (represented as `dict` in JSON). """
-        
-        self.costToBeneficiary = None
-        """ Patient payments for services/products.
-        List of `CoverageCostToBeneficiary` items (represented as `dict` in JSON). """
-        
-        self.dependent = None
-        """ Dependent number.
-        Type `str`. """
-        
         self.identifier = None
         """ Business Identifier for the coverage.
         List of `Identifier` items (represented as `dict` in JSON). """
-        
-        self.network = None
-        """ Insurer network.
-        Type `str`. """
-        
-        self.order = None
-        """ Relative order of the coverage.
-        Type `int`. """
-        
-        self.payor = None
-        """ Issuer of the policy.
-        List of `FHIRReference` items (represented as `dict` in JSON). """
-        
-        self.period = None
-        """ Coverage start and end dates.
-        Type `Period` (represented as `dict` in JSON). """
-        
-        self.policyHolder = None
-        """ Owner of the policy.
-        Type `FHIRReference` (represented as `dict` in JSON). """
-        
-        self.relationship = None
-        """ Beneficiary relationship to the subscriber.
-        Type `CodeableConcept` (represented as `dict` in JSON). """
         
         self.status = None
         """ active | cancelled | draft | entered-in-error.
         Type `str`. """
         
-        self.subrogation = None
-        """ Reimbursement to insurer.
-        Type `bool`. """
+        self.type = None
+        """ Coverage category such as medical or accident.
+        Type `CodeableConcept` (represented as `dict` in JSON). """
+        
+        self.policyHolder = None
+        """ Owner of the policy.
+        Type `FHIRReference` (represented as `dict` in JSON). """
         
         self.subscriber = None
         """ Subscriber to the policy.
@@ -88,32 +48,72 @@ class Coverage(domainresource.DomainResource):
         """ ID assigned to the subscriber.
         Type `str`. """
         
-        self.type = None
-        """ Coverage category such as medical or accident.
+        self.beneficiary = None
+        """ Plan beneficiary.
+        Type `FHIRReference` (represented as `dict` in JSON). """
+        
+        self.dependent = None
+        """ Dependent number.
+        Type `str`. """
+        
+        self.relationship = None
+        """ Beneficiary relationship to the subscriber.
         Type `CodeableConcept` (represented as `dict` in JSON). """
+        
+        self.period = None
+        """ Coverage start and end dates.
+        Type `Period` (represented as `dict` in JSON). """
+        
+        self.payor = None
+        """ Issuer of the policy.
+        List of `FHIRReference` items (represented as `dict` in JSON). """
+        
+        self.class_fhir = None
+        """ Additional coverage classifications.
+        List of `CoverageClass` items (represented as `dict` in JSON). """
+        
+        self.order = None
+        """ Relative order of the coverage.
+        Type `int`. """
+        
+        self.network = None
+        """ Insurer network.
+        Type `str`. """
+        
+        self.costToBeneficiary = None
+        """ Patient payments for services/products.
+        List of `CoverageCostToBeneficiary` items (represented as `dict` in JSON). """
+        
+        self.subrogation = None
+        """ Reimbursement to insurer.
+        Type `bool`. """
+        
+        self.contract = None
+        """ Contract details.
+        List of `FHIRReference` items (represented as `dict` in JSON). """
         
         super(Coverage, self).__init__(jsondict=jsondict, strict=strict)
     
     def elementProperties(self):
         js = super(Coverage, self).elementProperties()
         js.extend([
-            ("beneficiary", "beneficiary", fhirreference.FHIRReference, False, None, True),
-            ("class_fhir", "class", CoverageClass, True, None, False),
-            ("contract", "contract", fhirreference.FHIRReference, True, None, False),
-            ("costToBeneficiary", "costToBeneficiary", CoverageCostToBeneficiary, True, None, False),
-            ("dependent", "dependent", str, False, None, False),
             ("identifier", "identifier", identifier.Identifier, True, None, False),
-            ("network", "network", str, False, None, False),
-            ("order", "order", int, False, None, False),
-            ("payor", "payor", fhirreference.FHIRReference, True, None, True),
-            ("period", "period", period.Period, False, None, False),
-            ("policyHolder", "policyHolder", fhirreference.FHIRReference, False, None, False),
-            ("relationship", "relationship", codeableconcept.CodeableConcept, False, None, False),
             ("status", "status", str, False, None, True),
-            ("subrogation", "subrogation", bool, False, None, False),
+            ("type", "type", codeableconcept.CodeableConcept, False, None, False),
+            ("policyHolder", "policyHolder", fhirreference.FHIRReference, False, None, False),
             ("subscriber", "subscriber", fhirreference.FHIRReference, False, None, False),
             ("subscriberId", "subscriberId", str, False, None, False),
-            ("type", "type", codeableconcept.CodeableConcept, False, None, False),
+            ("beneficiary", "beneficiary", fhirreference.FHIRReference, False, None, True),
+            ("dependent", "dependent", str, False, None, False),
+            ("relationship", "relationship", codeableconcept.CodeableConcept, False, None, False),
+            ("period", "period", period.Period, False, None, False),
+            ("payor", "payor", fhirreference.FHIRReference, True, None, True),
+            ("class_fhir", "class", CoverageClass, True, None, False),
+            ("order", "order", int, False, None, False),
+            ("network", "network", str, False, None, False),
+            ("costToBeneficiary", "costToBeneficiary", CoverageCostToBeneficiary, True, None, False),
+            ("subrogation", "subrogation", bool, False, None, False),
+            ("contract", "contract", fhirreference.FHIRReference, True, None, False),
         ])
         return js
 
@@ -126,8 +126,6 @@ class CoverageClass(backboneelement.BackboneElement):
     A suite of underwriter specific classifiers.
     """
     
-    resource_type = "CoverageClass"
-    
     def __init__(self, jsondict=None, strict=True):
         """ Initialize all valid properties.
         
@@ -135,10 +133,6 @@ class CoverageClass(backboneelement.BackboneElement):
         :param dict jsondict: A JSON dictionary to use for initialization
         :param bool strict: If True (the default), invalid variables will raise a TypeError
         """
-        
-        self.name = None
-        """ Human readable description of the type and value.
-        Type `str`. """
         
         self.type = None
         """ Type of class such as 'group' or 'plan'.
@@ -148,14 +142,18 @@ class CoverageClass(backboneelement.BackboneElement):
         """ Value associated with the type.
         Type `str`. """
         
+        self.name = None
+        """ Human readable description of the type and value.
+        Type `str`. """
+        
         super(CoverageClass, self).__init__(jsondict=jsondict, strict=strict)
     
     def elementProperties(self):
         js = super(CoverageClass, self).elementProperties()
         js.extend([
-            ("name", "name", str, False, None, False),
             ("type", "type", codeableconcept.CodeableConcept, False, None, True),
             ("value", "value", str, False, None, True),
+            ("name", "name", str, False, None, False),
         ])
         return js
 
@@ -168,8 +166,6 @@ class CoverageCostToBeneficiary(backboneelement.BackboneElement):
     card.
     """
     
-    resource_type = "CoverageCostToBeneficiary"
-    
     def __init__(self, jsondict=None, strict=True):
         """ Initialize all valid properties.
         
@@ -178,31 +174,31 @@ class CoverageCostToBeneficiary(backboneelement.BackboneElement):
         :param bool strict: If True (the default), invalid variables will raise a TypeError
         """
         
-        self.exception = None
-        """ Exceptions for patient payments.
-        List of `CoverageCostToBeneficiaryException` items (represented as `dict` in JSON). """
-        
         self.type = None
         """ Cost category.
         Type `CodeableConcept` (represented as `dict` in JSON). """
+        
+        self.valueQuantity = None
+        """ The amount or percentage due from the beneficiary.
+        Type `Quantity` (represented as `dict` in JSON). """
         
         self.valueMoney = None
         """ The amount or percentage due from the beneficiary.
         Type `Money` (represented as `dict` in JSON). """
         
-        self.valueQuantity = None
-        """ The amount or percentage due from the beneficiary.
-        Type `Quantity` (represented as `dict` in JSON). """
+        self.exception = None
+        """ Exceptions for patient payments.
+        List of `CoverageCostToBeneficiaryException` items (represented as `dict` in JSON). """
         
         super(CoverageCostToBeneficiary, self).__init__(jsondict=jsondict, strict=strict)
     
     def elementProperties(self):
         js = super(CoverageCostToBeneficiary, self).elementProperties()
         js.extend([
-            ("exception", "exception", CoverageCostToBeneficiaryException, True, None, False),
             ("type", "type", codeableconcept.CodeableConcept, False, None, False),
-            ("valueMoney", "valueMoney", money.Money, False, "value", True),
             ("valueQuantity", "valueQuantity", quantity.Quantity, False, "value", True),
+            ("valueMoney", "valueMoney", money.Money, False, "value", True),
+            ("exception", "exception", CoverageCostToBeneficiaryException, True, None, False),
         ])
         return js
 
@@ -214,8 +210,6 @@ class CoverageCostToBeneficiaryException(backboneelement.BackboneElement):
     their effective periods.
     """
     
-    resource_type = "CoverageCostToBeneficiaryException"
-    
     def __init__(self, jsondict=None, strict=True):
         """ Initialize all valid properties.
         
@@ -224,21 +218,21 @@ class CoverageCostToBeneficiaryException(backboneelement.BackboneElement):
         :param bool strict: If True (the default), invalid variables will raise a TypeError
         """
         
-        self.period = None
-        """ The effective period of the exception.
-        Type `Period` (represented as `dict` in JSON). """
-        
         self.type = None
         """ Exception category.
         Type `CodeableConcept` (represented as `dict` in JSON). """
+        
+        self.period = None
+        """ The effective period of the exception.
+        Type `Period` (represented as `dict` in JSON). """
         
         super(CoverageCostToBeneficiaryException, self).__init__(jsondict=jsondict, strict=strict)
     
     def elementProperties(self):
         js = super(CoverageCostToBeneficiaryException, self).elementProperties()
         js.extend([
-            ("period", "period", period.Period, False, None, False),
             ("type", "type", codeableconcept.CodeableConcept, False, None, True),
+            ("period", "period", period.Period, False, None, False),
         ])
         return js
 

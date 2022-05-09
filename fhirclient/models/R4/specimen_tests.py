@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-05-07.
-#  2019, SMART Health IT.
+#  Generated from FHIR 4.0.1-9346c8cc45 on 2022-05-02.
+#  2022, SMART Health IT.
 
 
 import os
@@ -83,7 +83,7 @@ class SpecimenTests(unittest.TestCase):
         self.assertEqual(inst.type.text, "Pooled serum sample")
     
     def testSpecimen3(self):
-        inst = self.instantiate_from("specimen-example-urine.json")
+        inst = self.instantiate_from("specimen-example-serum.json")
         self.assertIsNotNone(inst, "Must have instantiated a Specimen instance")
         self.implSpecimen3(inst)
         
@@ -93,6 +93,33 @@ class SpecimenTests(unittest.TestCase):
         self.implSpecimen3(inst2)
     
     def implSpecimen3(self, inst):
+        self.assertEqual(inst.accessionIdentifier.system, "http://acme.com/labs/accession-ids")
+        self.assertEqual(inst.accessionIdentifier.value, "20150816-00124")
+        self.assertEqual(inst.collection.collectedDateTime.date, FHIRDate("2015-08-16T06:40:17Z").date)
+        self.assertEqual(inst.collection.collectedDateTime.as_json(), "2015-08-16T06:40:17Z")
+        self.assertEqual(inst.container[0].type.coding[0].code, "SST")
+        self.assertEqual(inst.container[0].type.coding[0].display, "Serum Separator Tube")
+        self.assertEqual(inst.container[0].type.coding[0].system, "http://acme.com/labs")
+        self.assertEqual(inst.id, "sst")
+        self.assertEqual(inst.meta.tag[0].code, "HTEST")
+        self.assertEqual(inst.meta.tag[0].display, "test health data")
+        self.assertEqual(inst.meta.tag[0].system, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
+        self.assertEqual(inst.text.status, "generated")
+        self.assertEqual(inst.type.coding[0].code, "119364003")
+        self.assertEqual(inst.type.coding[0].display, "Serum sample")
+        self.assertEqual(inst.type.coding[0].system, "http://snomed.info/sct")
+    
+    def testSpecimen4(self):
+        inst = self.instantiate_from("specimen-example-urine.json")
+        self.assertIsNotNone(inst, "Must have instantiated a Specimen instance")
+        self.implSpecimen4(inst)
+        
+        js = inst.as_json()
+        self.assertEqual("Specimen", js["resourceType"])
+        inst2 = specimen.Specimen(js)
+        self.implSpecimen4(inst2)
+    
+    def implSpecimen4(self, inst):
         self.assertEqual(inst.accessionIdentifier.system, "http://lab.acme.org/specimens/2015")
         self.assertEqual(inst.accessionIdentifier.value, "X352356")
         self.assertEqual(inst.collection.collectedDateTime.date, FHIRDate("2015-08-18T07:03:00Z").date)
@@ -118,33 +145,6 @@ class SpecimenTests(unittest.TestCase):
         self.assertEqual(inst.type.coding[0].code, "RANDU")
         self.assertEqual(inst.type.coding[0].display, "Urine, Random")
         self.assertEqual(inst.type.coding[0].system, "http://terminology.hl7.org/CodeSystem/v2-0487")
-    
-    def testSpecimen4(self):
-        inst = self.instantiate_from("specimen-example-serum.json")
-        self.assertIsNotNone(inst, "Must have instantiated a Specimen instance")
-        self.implSpecimen4(inst)
-        
-        js = inst.as_json()
-        self.assertEqual("Specimen", js["resourceType"])
-        inst2 = specimen.Specimen(js)
-        self.implSpecimen4(inst2)
-    
-    def implSpecimen4(self, inst):
-        self.assertEqual(inst.accessionIdentifier.system, "http://acme.com/labs/accession-ids")
-        self.assertEqual(inst.accessionIdentifier.value, "20150816-00124")
-        self.assertEqual(inst.collection.collectedDateTime.date, FHIRDate("2015-08-16T06:40:17Z").date)
-        self.assertEqual(inst.collection.collectedDateTime.as_json(), "2015-08-16T06:40:17Z")
-        self.assertEqual(inst.container[0].type.coding[0].code, "SST")
-        self.assertEqual(inst.container[0].type.coding[0].display, "Serum Separator Tube")
-        self.assertEqual(inst.container[0].type.coding[0].system, "http://acme.com/labs")
-        self.assertEqual(inst.id, "sst")
-        self.assertEqual(inst.meta.tag[0].code, "HTEST")
-        self.assertEqual(inst.meta.tag[0].display, "test health data")
-        self.assertEqual(inst.meta.tag[0].system, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
-        self.assertEqual(inst.text.status, "generated")
-        self.assertEqual(inst.type.coding[0].code, "119364003")
-        self.assertEqual(inst.type.coding[0].display, "Serum sample")
-        self.assertEqual(inst.type.coding[0].system, "http://snomed.info/sct")
     
     def testSpecimen5(self):
         inst = self.instantiate_from("specimen-example.json")

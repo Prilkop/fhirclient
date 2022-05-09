@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Element) on 2019-05-07.
-#  2019, SMART Health IT.
+#  Generated from FHIR 4.0.1-9346c8cc45 (http://hl7.org/fhir/StructureDefinition/Element) on 2022-05-02.
+#  2022, SMART Health IT.
 
 
 from . import fhirabstractbase
@@ -13,8 +13,6 @@ class Element(fhirabstractbase.FHIRAbstractBase):
     Base definition for all elements in a resource.
     """
     
-    resource_type = "Element"
-    
     def __init__(self, jsondict=None, strict=True):
         """ Initialize all valid properties.
         
@@ -23,13 +21,13 @@ class Element(fhirabstractbase.FHIRAbstractBase):
         :param bool strict: If True (the default), invalid variables will raise a TypeError
         """
         
-        self.extension = None
-        """ Additional content defined by implementations.
-        List of `Extension` items (represented as `dict` in JSON). """
-        
         self.id = None
         """ Unique id for inter-element referencing.
         Type `str`. """
+        
+        self.extension = None
+        """ Additional content defined by implementations.
+        List of `Extension` items (represented as `dict` in JSON). """
         
         super(Element, self).__init__(jsondict=jsondict, strict=strict)
     
@@ -37,8 +35,8 @@ class Element(fhirabstractbase.FHIRAbstractBase):
         js = super(Element, self).elementProperties()
         from . import extension
         js.extend([
-            ("extension", "extension", extension.Extension, True, None, False),
             ("id", "id", str, False, None, False),
+            ("extension", "extension", extension.Extension, True, None, False),
         ])
         return js
 

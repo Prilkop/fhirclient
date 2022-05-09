@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Expression) on 2019-05-07.
-#  2019, SMART Health IT.
+#  Generated from FHIR 4.0.1-9346c8cc45 (http://hl7.org/fhir/StructureDefinition/Expression) on 2022-05-02.
+#  2022, SMART Health IT.
 
 
 from . import element
@@ -14,8 +14,6 @@ class Expression(element.Element):
     The context of use of the expression must specify the context in which the
     expression is evaluated, and how the result of the expression is used.
     """
-    
-    resource_type = "Expression"
     
     def __init__(self, jsondict=None, strict=True):
         """ Initialize all valid properties.
@@ -29,16 +27,16 @@ class Expression(element.Element):
         """ Natural language description of the condition.
         Type `str`. """
         
-        self.expression = None
-        """ Expression in specified language.
+        self.name = None
+        """ Short name assigned to expression for reuse.
         Type `str`. """
         
         self.language = None
         """ text/cql | text/fhirpath | application/x-fhir-query | etc..
         Type `str`. """
         
-        self.name = None
-        """ Short name assigned to expression for reuse.
+        self.expression = None
+        """ Expression in specified language.
         Type `str`. """
         
         self.reference = None
@@ -51,9 +49,9 @@ class Expression(element.Element):
         js = super(Expression, self).elementProperties()
         js.extend([
             ("description", "description", str, False, None, False),
-            ("expression", "expression", str, False, None, False),
-            ("language", "language", str, False, None, True),
             ("name", "name", str, False, None, False),
+            ("language", "language", str, False, None, True),
+            ("expression", "expression", str, False, None, False),
             ("reference", "reference", str, False, None, False),
         ])
         return js

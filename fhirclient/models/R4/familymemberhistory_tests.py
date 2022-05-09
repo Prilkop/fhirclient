@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-05-07.
-#  2019, SMART Health IT.
+#  Generated from FHIR 4.0.1-9346c8cc45 on 2022-05-02.
+#  2022, SMART Health IT.
 
 
 import os
@@ -22,7 +22,7 @@ class FamilyMemberHistoryTests(unittest.TestCase):
         return familymemberhistory.FamilyMemberHistory(js)
     
     def testFamilyMemberHistory1(self):
-        inst = self.instantiate_from("familymemberhistory-example.json")
+        inst = self.instantiate_from("familymemberhistory-example-mother.json")
         self.assertIsNotNone(inst, "Must have instantiated a FamilyMemberHistory instance")
         self.implFamilyMemberHistory1(inst)
         
@@ -32,6 +32,36 @@ class FamilyMemberHistoryTests(unittest.TestCase):
         self.implFamilyMemberHistory1(inst2)
     
     def implFamilyMemberHistory1(self, inst):
+        self.assertEqual(inst.condition[0].code.coding[0].code, "371041009")
+        self.assertEqual(inst.condition[0].code.coding[0].display, "Embolic Stroke")
+        self.assertEqual(inst.condition[0].code.coding[0].system, "http://snomed.info/sct")
+        self.assertEqual(inst.condition[0].code.text, "Stroke")
+        self.assertEqual(inst.condition[0].onsetAge.code, "a")
+        self.assertEqual(inst.condition[0].onsetAge.system, "http://unitsofmeasure.org")
+        self.assertEqual(inst.condition[0].onsetAge.unit, "yr")
+        self.assertEqual(inst.condition[0].onsetAge.value, 56)
+        self.assertEqual(inst.id, "mother")
+        self.assertEqual(inst.meta.tag[0].code, "HTEST")
+        self.assertEqual(inst.meta.tag[0].display, "test health data")
+        self.assertEqual(inst.meta.tag[0].system, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
+        self.assertEqual(inst.relationship.coding[0].code, "MTH")
+        self.assertEqual(inst.relationship.coding[0].display, "mother")
+        self.assertEqual(inst.relationship.coding[0].system, "http://terminology.hl7.org/CodeSystem/v3-RoleCode")
+        self.assertEqual(inst.status, "completed")
+        self.assertEqual(inst.text.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Mother died of a stroke aged 56</div>")
+        self.assertEqual(inst.text.status, "generated")
+    
+    def testFamilyMemberHistory2(self):
+        inst = self.instantiate_from("familymemberhistory-example.json")
+        self.assertIsNotNone(inst, "Must have instantiated a FamilyMemberHistory instance")
+        self.implFamilyMemberHistory2(inst)
+        
+        js = inst.as_json()
+        self.assertEqual("FamilyMemberHistory", js["resourceType"])
+        inst2 = familymemberhistory.FamilyMemberHistory(js)
+        self.implFamilyMemberHistory2(inst2)
+    
+    def implFamilyMemberHistory2(self, inst):
         self.assertEqual(inst.condition[0].code.coding[0].code, "315619001")
         self.assertEqual(inst.condition[0].code.coding[0].display, "Myocardial Infarction")
         self.assertEqual(inst.condition[0].code.coding[0].system, "http://snomed.info/sct")
@@ -58,35 +88,5 @@ class FamilyMemberHistoryTests(unittest.TestCase):
         self.assertEqual(inst.sex.coding[0].system, "http://hl7.org/fhir/administrative-gender")
         self.assertEqual(inst.status, "completed")
         self.assertEqual(inst.text.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Father died of a heart attack aged 74</div>")
-        self.assertEqual(inst.text.status, "generated")
-    
-    def testFamilyMemberHistory2(self):
-        inst = self.instantiate_from("familymemberhistory-example-mother.json")
-        self.assertIsNotNone(inst, "Must have instantiated a FamilyMemberHistory instance")
-        self.implFamilyMemberHistory2(inst)
-        
-        js = inst.as_json()
-        self.assertEqual("FamilyMemberHistory", js["resourceType"])
-        inst2 = familymemberhistory.FamilyMemberHistory(js)
-        self.implFamilyMemberHistory2(inst2)
-    
-    def implFamilyMemberHistory2(self, inst):
-        self.assertEqual(inst.condition[0].code.coding[0].code, "371041009")
-        self.assertEqual(inst.condition[0].code.coding[0].display, "Embolic Stroke")
-        self.assertEqual(inst.condition[0].code.coding[0].system, "http://snomed.info/sct")
-        self.assertEqual(inst.condition[0].code.text, "Stroke")
-        self.assertEqual(inst.condition[0].onsetAge.code, "a")
-        self.assertEqual(inst.condition[0].onsetAge.system, "http://unitsofmeasure.org")
-        self.assertEqual(inst.condition[0].onsetAge.unit, "yr")
-        self.assertEqual(inst.condition[0].onsetAge.value, 56)
-        self.assertEqual(inst.id, "mother")
-        self.assertEqual(inst.meta.tag[0].code, "HTEST")
-        self.assertEqual(inst.meta.tag[0].display, "test health data")
-        self.assertEqual(inst.meta.tag[0].system, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
-        self.assertEqual(inst.relationship.coding[0].code, "MTH")
-        self.assertEqual(inst.relationship.coding[0].display, "mother")
-        self.assertEqual(inst.relationship.coding[0].system, "http://terminology.hl7.org/CodeSystem/v3-RoleCode")
-        self.assertEqual(inst.status, "completed")
-        self.assertEqual(inst.text.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Mother died of a stroke aged 56</div>")
         self.assertEqual(inst.text.status, "generated")
 

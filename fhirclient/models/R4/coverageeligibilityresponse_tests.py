@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-05-07.
-#  2019, SMART Health IT.
+#  Generated from FHIR 4.0.1-9346c8cc45 on 2022-05-02.
+#  2022, SMART Health IT.
 
 
 import os
@@ -22,7 +22,7 @@ class CoverageEligibilityResponseTests(unittest.TestCase):
         return coverageeligibilityresponse.CoverageEligibilityResponse(js)
     
     def testCoverageEligibilityResponse1(self):
-        inst = self.instantiate_from("coverageeligibilityresponse-example.json")
+        inst = self.instantiate_from("coverageeligibilityresponse-example-benefits-2.json")
         self.assertIsNotNone(inst, "Must have instantiated a CoverageEligibilityResponse instance")
         self.implCoverageEligibilityResponse1(inst)
         
@@ -32,63 +32,6 @@ class CoverageEligibilityResponseTests(unittest.TestCase):
         self.implCoverageEligibilityResponse1(inst2)
     
     def implCoverageEligibilityResponse1(self, inst):
-        self.assertEqual(inst.created.date, FHIRDate("2014-08-16").date)
-        self.assertEqual(inst.created.as_json(), "2014-08-16")
-        self.assertEqual(inst.disposition, "Policy is currently in-force.")
-        self.assertEqual(inst.id, "E2500")
-        self.assertEqual(inst.identifier[0].system, "http://www.BenefitsInc.com/fhir/coverageeligibilityresponse")
-        self.assertEqual(inst.identifier[0].value, "881234")
-        self.assertTrue(inst.insurance[0].inforce)
-        self.assertEqual(inst.meta.tag[0].code, "HTEST")
-        self.assertEqual(inst.meta.tag[0].display, "test health data")
-        self.assertEqual(inst.meta.tag[0].system, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
-        self.assertEqual(inst.outcome, "complete")
-        self.assertEqual(inst.purpose[0], "validation")
-        self.assertEqual(inst.status, "active")
-        self.assertEqual(inst.text.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the CoverageEligibilityResponse.</div>")
-        self.assertEqual(inst.text.status, "generated")
-    
-    def testCoverageEligibilityResponse2(self):
-        inst = self.instantiate_from("coverageeligibilityresponse-example-error.json")
-        self.assertIsNotNone(inst, "Must have instantiated a CoverageEligibilityResponse instance")
-        self.implCoverageEligibilityResponse2(inst)
-        
-        js = inst.as_json()
-        self.assertEqual("CoverageEligibilityResponse", js["resourceType"])
-        inst2 = coverageeligibilityresponse.CoverageEligibilityResponse(js)
-        self.implCoverageEligibilityResponse2(inst2)
-    
-    def implCoverageEligibilityResponse2(self, inst):
-        self.assertEqual(inst.created.date, FHIRDate("2014-09-16").date)
-        self.assertEqual(inst.created.as_json(), "2014-09-16")
-        self.assertEqual(inst.disposition, "Eligibiliy request could not be processed, please address errors before submitting.")
-        self.assertEqual(inst.error[0].code.coding[0].code, "a001")
-        self.assertEqual(inst.error[0].code.coding[0].system, "http://terminology.hl7.org/CodeSystem/adjudication-error")
-        self.assertEqual(inst.form.coding[0].code, "ELRSP/2017/01")
-        self.assertEqual(inst.form.coding[0].system, "http://national.org/form")
-        self.assertEqual(inst.id, "E2503")
-        self.assertEqual(inst.identifier[0].system, "http://www.BenefitsInc.com/fhir/coverageeligibilityresponse")
-        self.assertEqual(inst.identifier[0].value, "8812343")
-        self.assertEqual(inst.meta.tag[0].code, "HTEST")
-        self.assertEqual(inst.meta.tag[0].display, "test health data")
-        self.assertEqual(inst.meta.tag[0].system, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
-        self.assertEqual(inst.outcome, "error")
-        self.assertEqual(inst.purpose[0], "validation")
-        self.assertEqual(inst.status, "active")
-        self.assertEqual(inst.text.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the CoverageEligibilityResponse.</div>")
-        self.assertEqual(inst.text.status, "generated")
-    
-    def testCoverageEligibilityResponse3(self):
-        inst = self.instantiate_from("coverageeligibilityresponse-example-benefits-2.json")
-        self.assertIsNotNone(inst, "Must have instantiated a CoverageEligibilityResponse instance")
-        self.implCoverageEligibilityResponse3(inst)
-        
-        js = inst.as_json()
-        self.assertEqual("CoverageEligibilityResponse", js["resourceType"])
-        inst2 = coverageeligibilityresponse.CoverageEligibilityResponse(js)
-        self.implCoverageEligibilityResponse3(inst2)
-    
-    def implCoverageEligibilityResponse3(self, inst):
         self.assertEqual(inst.contained[0].id, "coverage-1")
         self.assertEqual(inst.created.date, FHIRDate("2014-09-16").date)
         self.assertEqual(inst.created.as_json(), "2014-09-16")
@@ -158,17 +101,17 @@ class CoverageEligibilityResponseTests(unittest.TestCase):
         self.assertEqual(inst.text.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the CoverageEligibilityResponse.</div>")
         self.assertEqual(inst.text.status, "generated")
     
-    def testCoverageEligibilityResponse4(self):
+    def testCoverageEligibilityResponse2(self):
         inst = self.instantiate_from("coverageeligibilityresponse-example-benefits.json")
         self.assertIsNotNone(inst, "Must have instantiated a CoverageEligibilityResponse instance")
-        self.implCoverageEligibilityResponse4(inst)
+        self.implCoverageEligibilityResponse2(inst)
         
         js = inst.as_json()
         self.assertEqual("CoverageEligibilityResponse", js["resourceType"])
         inst2 = coverageeligibilityresponse.CoverageEligibilityResponse(js)
-        self.implCoverageEligibilityResponse4(inst2)
+        self.implCoverageEligibilityResponse2(inst2)
     
-    def implCoverageEligibilityResponse4(self, inst):
+    def implCoverageEligibilityResponse2(self, inst):
         self.assertEqual(inst.created.date, FHIRDate("2014-08-16").date)
         self.assertEqual(inst.created.as_json(), "2014-08-16")
         self.assertEqual(inst.disposition, "Policy is currently in-force.")
@@ -251,6 +194,63 @@ class CoverageEligibilityResponseTests(unittest.TestCase):
         self.assertEqual(inst.purpose[1], "benefits")
         self.assertEqual(inst.servicedDate.date, FHIRDate("2014-09-17").date)
         self.assertEqual(inst.servicedDate.as_json(), "2014-09-17")
+        self.assertEqual(inst.status, "active")
+        self.assertEqual(inst.text.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the CoverageEligibilityResponse.</div>")
+        self.assertEqual(inst.text.status, "generated")
+    
+    def testCoverageEligibilityResponse3(self):
+        inst = self.instantiate_from("coverageeligibilityresponse-example-error.json")
+        self.assertIsNotNone(inst, "Must have instantiated a CoverageEligibilityResponse instance")
+        self.implCoverageEligibilityResponse3(inst)
+        
+        js = inst.as_json()
+        self.assertEqual("CoverageEligibilityResponse", js["resourceType"])
+        inst2 = coverageeligibilityresponse.CoverageEligibilityResponse(js)
+        self.implCoverageEligibilityResponse3(inst2)
+    
+    def implCoverageEligibilityResponse3(self, inst):
+        self.assertEqual(inst.created.date, FHIRDate("2014-09-16").date)
+        self.assertEqual(inst.created.as_json(), "2014-09-16")
+        self.assertEqual(inst.disposition, "Eligibiliy request could not be processed, please address errors before submitting.")
+        self.assertEqual(inst.error[0].code.coding[0].code, "a001")
+        self.assertEqual(inst.error[0].code.coding[0].system, "http://terminology.hl7.org/CodeSystem/adjudication-error")
+        self.assertEqual(inst.form.coding[0].code, "ELRSP/2017/01")
+        self.assertEqual(inst.form.coding[0].system, "http://national.org/form")
+        self.assertEqual(inst.id, "E2503")
+        self.assertEqual(inst.identifier[0].system, "http://www.BenefitsInc.com/fhir/coverageeligibilityresponse")
+        self.assertEqual(inst.identifier[0].value, "8812343")
+        self.assertEqual(inst.meta.tag[0].code, "HTEST")
+        self.assertEqual(inst.meta.tag[0].display, "test health data")
+        self.assertEqual(inst.meta.tag[0].system, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
+        self.assertEqual(inst.outcome, "error")
+        self.assertEqual(inst.purpose[0], "validation")
+        self.assertEqual(inst.status, "active")
+        self.assertEqual(inst.text.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the CoverageEligibilityResponse.</div>")
+        self.assertEqual(inst.text.status, "generated")
+    
+    def testCoverageEligibilityResponse4(self):
+        inst = self.instantiate_from("coverageeligibilityresponse-example.json")
+        self.assertIsNotNone(inst, "Must have instantiated a CoverageEligibilityResponse instance")
+        self.implCoverageEligibilityResponse4(inst)
+        
+        js = inst.as_json()
+        self.assertEqual("CoverageEligibilityResponse", js["resourceType"])
+        inst2 = coverageeligibilityresponse.CoverageEligibilityResponse(js)
+        self.implCoverageEligibilityResponse4(inst2)
+    
+    def implCoverageEligibilityResponse4(self, inst):
+        self.assertEqual(inst.created.date, FHIRDate("2014-08-16").date)
+        self.assertEqual(inst.created.as_json(), "2014-08-16")
+        self.assertEqual(inst.disposition, "Policy is currently in-force.")
+        self.assertEqual(inst.id, "E2500")
+        self.assertEqual(inst.identifier[0].system, "http://www.BenefitsInc.com/fhir/coverageeligibilityresponse")
+        self.assertEqual(inst.identifier[0].value, "881234")
+        self.assertTrue(inst.insurance[0].inforce)
+        self.assertEqual(inst.meta.tag[0].code, "HTEST")
+        self.assertEqual(inst.meta.tag[0].display, "test health data")
+        self.assertEqual(inst.meta.tag[0].system, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
+        self.assertEqual(inst.outcome, "complete")
+        self.assertEqual(inst.purpose[0], "validation")
         self.assertEqual(inst.status, "active")
         self.assertEqual(inst.text.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the CoverageEligibilityResponse.</div>")
         self.assertEqual(inst.text.status, "generated")

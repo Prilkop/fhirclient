@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-05-07.
-#  2019, SMART Health IT.
+#  Generated from FHIR 4.0.1-9346c8cc45 on 2022-05-02.
+#  2022, SMART Health IT.
 
 
 import os
@@ -22,7 +22,7 @@ class GroupTests(unittest.TestCase):
         return group.Group(js)
     
     def testGroup1(self):
-        inst = self.instantiate_from("group-example.json")
+        inst = self.instantiate_from("group-example-herd1.json")
         self.assertIsNotNone(inst, "Must have instantiated a Group instance")
         self.implGroup1(inst)
         
@@ -32,23 +32,28 @@ class GroupTests(unittest.TestCase):
         self.implGroup1(inst2)
     
     def implGroup1(self, inst):
+        self.assertTrue(inst.active)
         self.assertTrue(inst.actual)
         self.assertEqual(inst.characteristic[0].code.text, "gender")
         self.assertFalse(inst.characteristic[0].exclude)
-        self.assertEqual(inst.characteristic[0].valueCodeableConcept.text, "mixed")
-        self.assertEqual(inst.characteristic[1].code.text, "owner")
-        self.assertFalse(inst.characteristic[1].exclude)
-        self.assertEqual(inst.characteristic[1].valueCodeableConcept.text, "John Smith")
-        self.assertEqual(inst.code.text, "Horse")
-        self.assertEqual(inst.id, "101")
-        self.assertEqual(inst.identifier[0].system, "http://someveterinarianclinic.org/fhir/NamingSystem/herds")
-        self.assertEqual(inst.identifier[0].value, "12345")
+        self.assertEqual(inst.characteristic[0].valueCodeableConcept.text, "female")
+        self.assertEqual(inst.code.coding[0].code, "388393002")
+        self.assertEqual(inst.code.coding[0].display, "Genus Sus (organism)")
+        self.assertEqual(inst.code.coding[0].system, "http://snomed.info/sct")
+        self.assertEqual(inst.code.coding[1].code, "POR")
+        self.assertEqual(inst.code.coding[1].display, "porcine")
+        self.assertEqual(inst.code.coding[1].system, "https://www.aphis.usda.gov")
+        self.assertEqual(inst.code.text, "Porcine")
+        self.assertEqual(inst.extension[0].url, "http://example.org/fhir/StructureDefinition/owner")
+        self.assertEqual(inst.id, "herd1")
+        self.assertEqual(inst.identifier[0].system, "https://vetmed.iastate.edu/vdl")
+        self.assertEqual(inst.identifier[0].value, "20171120-1234")
         self.assertEqual(inst.meta.tag[0].code, "HTEST")
         self.assertEqual(inst.meta.tag[0].display, "test health data")
         self.assertEqual(inst.meta.tag[0].system, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
-        self.assertEqual(inst.name, "John's herd")
-        self.assertEqual(inst.quantity, 25)
-        self.assertEqual(inst.text.status, "additional")
+        self.assertEqual(inst.name, "Breeding herd")
+        self.assertEqual(inst.quantity, 2500)
+        self.assertEqual(inst.text.status, "generated")
         self.assertEqual(inst.type, "animal")
     
     def testGroup2(self):
@@ -103,7 +108,7 @@ class GroupTests(unittest.TestCase):
         self.assertEqual(inst.type, "person")
     
     def testGroup4(self):
-        inst = self.instantiate_from("group-example-herd1.json")
+        inst = self.instantiate_from("group-example.json")
         self.assertIsNotNone(inst, "Must have instantiated a Group instance")
         self.implGroup4(inst)
         
@@ -113,27 +118,22 @@ class GroupTests(unittest.TestCase):
         self.implGroup4(inst2)
     
     def implGroup4(self, inst):
-        self.assertTrue(inst.active)
         self.assertTrue(inst.actual)
         self.assertEqual(inst.characteristic[0].code.text, "gender")
         self.assertFalse(inst.characteristic[0].exclude)
-        self.assertEqual(inst.characteristic[0].valueCodeableConcept.text, "female")
-        self.assertEqual(inst.code.coding[0].code, "388393002")
-        self.assertEqual(inst.code.coding[0].display, "Genus Sus (organism)")
-        self.assertEqual(inst.code.coding[0].system, "http://snomed.info/sct")
-        self.assertEqual(inst.code.coding[1].code, "POR")
-        self.assertEqual(inst.code.coding[1].display, "porcine")
-        self.assertEqual(inst.code.coding[1].system, "https://www.aphis.usda.gov")
-        self.assertEqual(inst.code.text, "Porcine")
-        self.assertEqual(inst.extension[0].url, "http://example.org/fhir/StructureDefinition/owner")
-        self.assertEqual(inst.id, "herd1")
-        self.assertEqual(inst.identifier[0].system, "https://vetmed.iastate.edu/vdl")
-        self.assertEqual(inst.identifier[0].value, "20171120-1234")
+        self.assertEqual(inst.characteristic[0].valueCodeableConcept.text, "mixed")
+        self.assertEqual(inst.characteristic[1].code.text, "owner")
+        self.assertFalse(inst.characteristic[1].exclude)
+        self.assertEqual(inst.characteristic[1].valueCodeableConcept.text, "John Smith")
+        self.assertEqual(inst.code.text, "Horse")
+        self.assertEqual(inst.id, "101")
+        self.assertEqual(inst.identifier[0].system, "http://someveterinarianclinic.org/fhir/NamingSystem/herds")
+        self.assertEqual(inst.identifier[0].value, "12345")
         self.assertEqual(inst.meta.tag[0].code, "HTEST")
         self.assertEqual(inst.meta.tag[0].display, "test health data")
         self.assertEqual(inst.meta.tag[0].system, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
-        self.assertEqual(inst.name, "Breeding herd")
-        self.assertEqual(inst.quantity, 2500)
-        self.assertEqual(inst.text.status, "generated")
+        self.assertEqual(inst.name, "John's herd")
+        self.assertEqual(inst.quantity, 25)
+        self.assertEqual(inst.text.status, "additional")
         self.assertEqual(inst.type, "animal")
 

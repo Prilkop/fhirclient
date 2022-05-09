@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-05-07.
-#  2019, SMART Health IT.
+#  Generated from FHIR 4.0.1-9346c8cc45 on 2022-05-02.
+#  2022, SMART Health IT.
 
 
 import os
@@ -22,7 +22,7 @@ class EndpointTests(unittest.TestCase):
         return endpoint.Endpoint(js)
     
     def testEndpoint1(self):
-        inst = self.instantiate_from("endpoint-example-iid.json")
+        inst = self.instantiate_from("endpoint-example-direct.json")
         self.assertIsNotNone(inst, "Must have instantiated a Endpoint instance")
         self.implEndpoint1(inst)
         
@@ -32,29 +32,6 @@ class EndpointTests(unittest.TestCase):
         self.implEndpoint1(inst2)
     
     def implEndpoint1(self, inst):
-        self.assertEqual(inst.address, "https://pacs.hospital.org/IHEInvokeImageDisplay")
-        self.assertEqual(inst.connectionType.code, "ihe-iid")
-        self.assertEqual(inst.connectionType.system, "http://terminology.hl7.org/CodeSystem/endpoint-connection-type")
-        self.assertEqual(inst.id, "example-iid")
-        self.assertEqual(inst.meta.tag[0].code, "HTEST")
-        self.assertEqual(inst.meta.tag[0].display, "test health data")
-        self.assertEqual(inst.meta.tag[0].system, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
-        self.assertEqual(inst.name, "PACS Hospital Invoke Image Display endpoint")
-        self.assertEqual(inst.payloadType[0].text, "DICOM IID")
-        self.assertEqual(inst.status, "active")
-        self.assertEqual(inst.text.status, "generated")
-    
-    def testEndpoint2(self):
-        inst = self.instantiate_from("endpoint-example-direct.json")
-        self.assertIsNotNone(inst, "Must have instantiated a Endpoint instance")
-        self.implEndpoint2(inst)
-        
-        js = inst.as_json()
-        self.assertEqual("Endpoint", js["resourceType"])
-        inst2 = endpoint.Endpoint(js)
-        self.implEndpoint2(inst2)
-    
-    def implEndpoint2(self, inst):
         self.assertEqual(inst.address, "mailto:MARTIN.SMIETANKA@directnppes.com")
         self.assertEqual(inst.connectionType.code, "direct-project")
         self.assertEqual(inst.id, "direct-endpoint")
@@ -64,6 +41,29 @@ class EndpointTests(unittest.TestCase):
         self.assertEqual(inst.name, "MARTIN SMIETANKA")
         self.assertEqual(inst.payloadType[0].coding[0].code, "urn:hl7-org:sdwg:ccda-structuredBody:1.1")
         self.assertEqual(inst.payloadType[0].coding[0].system, "urn:oid:1.3.6.1.4.1.19376.1.2.3")
+        self.assertEqual(inst.status, "active")
+        self.assertEqual(inst.text.status, "generated")
+    
+    def testEndpoint2(self):
+        inst = self.instantiate_from("endpoint-example-iid.json")
+        self.assertIsNotNone(inst, "Must have instantiated a Endpoint instance")
+        self.implEndpoint2(inst)
+        
+        js = inst.as_json()
+        self.assertEqual("Endpoint", js["resourceType"])
+        inst2 = endpoint.Endpoint(js)
+        self.implEndpoint2(inst2)
+    
+    def implEndpoint2(self, inst):
+        self.assertEqual(inst.address, "https://pacs.hospital.org/IHEInvokeImageDisplay")
+        self.assertEqual(inst.connectionType.code, "ihe-iid")
+        self.assertEqual(inst.connectionType.system, "http://terminology.hl7.org/CodeSystem/endpoint-connection-type")
+        self.assertEqual(inst.id, "example-iid")
+        self.assertEqual(inst.meta.tag[0].code, "HTEST")
+        self.assertEqual(inst.meta.tag[0].display, "test health data")
+        self.assertEqual(inst.meta.tag[0].system, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
+        self.assertEqual(inst.name, "PACS Hospital Invoke Image Display endpoint")
+        self.assertEqual(inst.payloadType[0].text, "DICOM IID")
         self.assertEqual(inst.status, "active")
         self.assertEqual(inst.text.status, "generated")
     

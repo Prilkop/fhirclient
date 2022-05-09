@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/BackboneElement) on 2019-05-07.
-#  2019, SMART Health IT.
+#  Generated from FHIR 4.0.1-9346c8cc45 (http://hl7.org/fhir/StructureDefinition/BackboneElement) on 2022-05-02.
+#  2022, SMART Health IT.
 
 
 from . import element
@@ -13,8 +13,6 @@ class BackboneElement(element.Element):
     Base definition for all elements that are defined inside a resource - but
     not those in a data type.
     """
-    
-    resource_type = "BackboneElement"
     
     def __init__(self, jsondict=None, strict=True):
         """ Initialize all valid properties.

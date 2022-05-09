@@ -38,7 +38,7 @@ class FHIRSearch(object):
                 raise Exception("Must pass a Python dictionary, but got a {}".format(type(struct)))
             self.wants_expand = True
             for key, val in struct.items():
-                self.params.append(FHIRSearchParam(key, val))
+                self.params.append(FHIRSearchParam(key, str(val)))
     
     
     # MARK: Execution

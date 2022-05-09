@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Signature) on 2019-05-07.
-#  2019, SMART Health IT.
+#  Generated from FHIR 4.0.1-9346c8cc45 (http://hl7.org/fhir/StructureDefinition/Signature) on 2022-05-02.
+#  2022, SMART Health IT.
 
 
 from . import element
@@ -17,8 +17,6 @@ class Signature(element.Element):
     ceremony Different signature approaches have different utilities.
     """
     
-    resource_type = "Signature"
-    
     def __init__(self, jsondict=None, strict=True):
         """ Initialize all valid properties.
         
@@ -26,22 +24,6 @@ class Signature(element.Element):
         :param dict jsondict: A JSON dictionary to use for initialization
         :param bool strict: If True (the default), invalid variables will raise a TypeError
         """
-        
-        self.data = None
-        """ The actual signature content (XML DigSig. JWS, picture, etc.).
-        Type `str`. """
-        
-        self.onBehalfOf = None
-        """ The party represented.
-        Type `FHIRReference` (represented as `dict` in JSON). """
-        
-        self.sigFormat = None
-        """ The technical format of the signature.
-        Type `str`. """
-        
-        self.targetFormat = None
-        """ The technical format of the signed resources.
-        Type `str`. """
         
         self.type = None
         """ Indication of the reason the entity signed the object(s).
@@ -55,18 +37,34 @@ class Signature(element.Element):
         """ Who signed.
         Type `FHIRReference` (represented as `dict` in JSON). """
         
+        self.onBehalfOf = None
+        """ The party represented.
+        Type `FHIRReference` (represented as `dict` in JSON). """
+        
+        self.targetFormat = None
+        """ The technical format of the signed resources.
+        Type `str`. """
+        
+        self.sigFormat = None
+        """ The technical format of the signature.
+        Type `str`. """
+        
+        self.data = None
+        """ The actual signature content (XML DigSig. JWS, picture, etc.).
+        Type `str`. """
+        
         super(Signature, self).__init__(jsondict=jsondict, strict=strict)
     
     def elementProperties(self):
         js = super(Signature, self).elementProperties()
         js.extend([
-            ("data", "data", str, False, None, False),
-            ("onBehalfOf", "onBehalfOf", fhirreference.FHIRReference, False, None, False),
-            ("sigFormat", "sigFormat", str, False, None, False),
-            ("targetFormat", "targetFormat", str, False, None, False),
             ("type", "type", coding.Coding, True, None, True),
             ("when", "when", fhirdate.FHIRDate, False, None, True),
             ("who", "who", fhirreference.FHIRReference, False, None, True),
+            ("onBehalfOf", "onBehalfOf", fhirreference.FHIRReference, False, None, False),
+            ("targetFormat", "targetFormat", str, False, None, False),
+            ("sigFormat", "sigFormat", str, False, None, False),
+            ("data", "data", str, False, None, False),
         ])
         return js
 

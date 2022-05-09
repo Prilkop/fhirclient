@@ -5,12 +5,12 @@ import json
 import os.path
 import logging
 import unittest
-import models.questionnaire as questionnaire
-import models.medication as medication
-import models.resource as resource
-import models.valueset as valueset
-import models.patient as patient
-import models.bundle as bundle
+from .models.R4 import questionnaire
+from .models.R4 import medication
+from .models.R4 import resource
+from .models.R4 import valueset
+from .models.R4 import patient
+from .models.R4 import bundle
 import server
 
 

@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-05-07.
-#  2019, SMART Health IT.
+#  Generated from FHIR 4.0.1-9346c8cc45 on 2022-05-02.
+#  2022, SMART Health IT.
 
 
 import os
@@ -22,7 +22,7 @@ class RiskAssessmentTests(unittest.TestCase):
         return riskassessment.RiskAssessment(js)
     
     def testRiskAssessment1(self):
-        inst = self.instantiate_from("riskassessment-example-population.json")
+        inst = self.instantiate_from("riskassessment-example-breastcancer.json")
         self.assertIsNotNone(inst, "Must have instantiated a RiskAssessment instance")
         self.implRiskAssessment1(inst)
         
@@ -32,13 +32,20 @@ class RiskAssessmentTests(unittest.TestCase):
         self.implRiskAssessment1(inst2)
     
     def implRiskAssessment1(self, inst):
-        self.assertEqual(inst.contained[0].id, "group1")
-        self.assertEqual(inst.id, "population")
+        self.assertEqual(inst.code.coding[0].code, "709510001")
+        self.assertEqual(inst.code.coding[0].display, "Assessment of risk for disease (procedure)")
+        self.assertEqual(inst.code.coding[0].system, "http://browser.ihtsdotools.org/")
+        self.assertEqual(inst.id, "breastcancer-risk")
+        self.assertEqual(inst.identifier[0].system, "http://example.org")
+        self.assertEqual(inst.identifier[0].use, "official")
+        self.assertEqual(inst.identifier[0].value, "risk-assessment-breastcancer1")
         self.assertEqual(inst.meta.tag[0].code, "HTEST")
         self.assertEqual(inst.meta.tag[0].display, "test health data")
         self.assertEqual(inst.meta.tag[0].system, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
+        self.assertEqual(inst.note[0].text, "This risk assessment is based on BRCA1 and BRCA2 genetic mutation test")
+        self.assertEqual(inst.prediction[0].outcome.text, "Unknown risk of developing breast cancer")
         self.assertEqual(inst.status, "final")
-        self.assertEqual(inst.text.status, "generated")
+        self.assertEqual(inst.text.status, "additional")
     
     def testRiskAssessment2(self):
         inst = self.instantiate_from("riskassessment-example-cardiac.json")
@@ -74,7 +81,7 @@ class RiskAssessmentTests(unittest.TestCase):
         self.assertEqual(inst.text.status, "additional")
     
     def testRiskAssessment3(self):
-        inst = self.instantiate_from("riskassessment-example.json")
+        inst = self.instantiate_from("riskassessment-example-population.json")
         self.assertIsNotNone(inst, "Must have instantiated a RiskAssessment instance")
         self.implRiskAssessment3(inst)
         
@@ -84,6 +91,51 @@ class RiskAssessmentTests(unittest.TestCase):
         self.implRiskAssessment3(inst2)
     
     def implRiskAssessment3(self, inst):
+        self.assertEqual(inst.contained[0].id, "group1")
+        self.assertEqual(inst.id, "population")
+        self.assertEqual(inst.meta.tag[0].code, "HTEST")
+        self.assertEqual(inst.meta.tag[0].display, "test health data")
+        self.assertEqual(inst.meta.tag[0].system, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
+        self.assertEqual(inst.status, "final")
+        self.assertEqual(inst.text.status, "generated")
+    
+    def testRiskAssessment4(self):
+        inst = self.instantiate_from("riskassessment-example-prognosis.json")
+        self.assertIsNotNone(inst, "Must have instantiated a RiskAssessment instance")
+        self.implRiskAssessment4(inst)
+        
+        js = inst.as_json()
+        self.assertEqual("RiskAssessment", js["resourceType"])
+        inst2 = riskassessment.RiskAssessment(js)
+        self.implRiskAssessment4(inst2)
+    
+    def implRiskAssessment4(self, inst):
+        self.assertEqual(inst.id, "prognosis")
+        self.assertEqual(inst.meta.tag[0].code, "HTEST")
+        self.assertEqual(inst.meta.tag[0].display, "test health data")
+        self.assertEqual(inst.meta.tag[0].system, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
+        self.assertEqual(inst.occurrenceDateTime.date, FHIRDate("2010-11-22").date)
+        self.assertEqual(inst.occurrenceDateTime.as_json(), "2010-11-22")
+        self.assertEqual(inst.prediction[0].outcome.coding[0].code, "249943000:363698007=72098002,260868000=6934004")
+        self.assertEqual(inst.prediction[0].outcome.coding[0].system, "http://snomed.info/sct")
+        self.assertEqual(inst.prediction[0].outcome.text, "permanent weakness of the left arm")
+        self.assertEqual(inst.prediction[0].qualitativeRisk.coding[0].code, "moderate")
+        self.assertEqual(inst.prediction[0].qualitativeRisk.coding[0].display, "moderate likelihood")
+        self.assertEqual(inst.prediction[0].qualitativeRisk.coding[0].system, "http://terminology.hl7.org/CodeSystem/risk-probability")
+        self.assertEqual(inst.status, "final")
+        self.assertEqual(inst.text.status, "additional")
+    
+    def testRiskAssessment5(self):
+        inst = self.instantiate_from("riskassessment-example.json")
+        self.assertIsNotNone(inst, "Must have instantiated a RiskAssessment instance")
+        self.implRiskAssessment5(inst)
+        
+        js = inst.as_json()
+        self.assertEqual("RiskAssessment", js["resourceType"])
+        inst2 = riskassessment.RiskAssessment(js)
+        self.implRiskAssessment5(inst2)
+    
+    def implRiskAssessment5(self, inst):
         self.assertEqual(inst.id, "genetic")
         self.assertEqual(inst.meta.tag[0].code, "HTEST")
         self.assertEqual(inst.meta.tag[0].display, "test health data")
@@ -170,56 +222,4 @@ class RiskAssessmentTests(unittest.TestCase):
         self.assertEqual(inst.prediction[7].whenRange.low.value, 83)
         self.assertEqual(inst.status, "final")
         self.assertEqual(inst.text.status, "generated")
-    
-    def testRiskAssessment4(self):
-        inst = self.instantiate_from("riskassessment-example-breastcancer.json")
-        self.assertIsNotNone(inst, "Must have instantiated a RiskAssessment instance")
-        self.implRiskAssessment4(inst)
-        
-        js = inst.as_json()
-        self.assertEqual("RiskAssessment", js["resourceType"])
-        inst2 = riskassessment.RiskAssessment(js)
-        self.implRiskAssessment4(inst2)
-    
-    def implRiskAssessment4(self, inst):
-        self.assertEqual(inst.code.coding[0].code, "709510001")
-        self.assertEqual(inst.code.coding[0].display, "Assessment of risk for disease (procedure)")
-        self.assertEqual(inst.code.coding[0].system, "http://browser.ihtsdotools.org/")
-        self.assertEqual(inst.id, "breastcancer-risk")
-        self.assertEqual(inst.identifier[0].system, "http://example.org")
-        self.assertEqual(inst.identifier[0].use, "official")
-        self.assertEqual(inst.identifier[0].value, "risk-assessment-breastcancer1")
-        self.assertEqual(inst.meta.tag[0].code, "HTEST")
-        self.assertEqual(inst.meta.tag[0].display, "test health data")
-        self.assertEqual(inst.meta.tag[0].system, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
-        self.assertEqual(inst.note[0].text, "This risk assessment is based on BRCA1 and BRCA2 genetic mutation test")
-        self.assertEqual(inst.prediction[0].outcome.text, "Unknown risk of developing breast cancer")
-        self.assertEqual(inst.status, "final")
-        self.assertEqual(inst.text.status, "additional")
-    
-    def testRiskAssessment5(self):
-        inst = self.instantiate_from("riskassessment-example-prognosis.json")
-        self.assertIsNotNone(inst, "Must have instantiated a RiskAssessment instance")
-        self.implRiskAssessment5(inst)
-        
-        js = inst.as_json()
-        self.assertEqual("RiskAssessment", js["resourceType"])
-        inst2 = riskassessment.RiskAssessment(js)
-        self.implRiskAssessment5(inst2)
-    
-    def implRiskAssessment5(self, inst):
-        self.assertEqual(inst.id, "prognosis")
-        self.assertEqual(inst.meta.tag[0].code, "HTEST")
-        self.assertEqual(inst.meta.tag[0].display, "test health data")
-        self.assertEqual(inst.meta.tag[0].system, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
-        self.assertEqual(inst.occurrenceDateTime.date, FHIRDate("2010-11-22").date)
-        self.assertEqual(inst.occurrenceDateTime.as_json(), "2010-11-22")
-        self.assertEqual(inst.prediction[0].outcome.coding[0].code, "249943000:363698007=72098002,260868000=6934004")
-        self.assertEqual(inst.prediction[0].outcome.coding[0].system, "http://snomed.info/sct")
-        self.assertEqual(inst.prediction[0].outcome.text, "permanent weakness of the left arm")
-        self.assertEqual(inst.prediction[0].qualitativeRisk.coding[0].code, "moderate")
-        self.assertEqual(inst.prediction[0].qualitativeRisk.coding[0].display, "moderate likelihood")
-        self.assertEqual(inst.prediction[0].qualitativeRisk.coding[0].system, "http://terminology.hl7.org/CodeSystem/risk-probability")
-        self.assertEqual(inst.status, "final")
-        self.assertEqual(inst.text.status, "additional")
 

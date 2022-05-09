@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ContactPoint) on 2019-05-07.
-#  2019, SMART Health IT.
+#  Generated from FHIR 4.0.1-9346c8cc45 (http://hl7.org/fhir/StructureDefinition/ContactPoint) on 2022-05-02.
+#  2022, SMART Health IT.
 
 
 from . import element
@@ -14,8 +14,6 @@ class ContactPoint(element.Element):
     organization, including telephone, email, etc.
     """
     
-    resource_type = "ContactPoint"
-    
     def __init__(self, jsondict=None, strict=True):
         """ Initialize all valid properties.
         
@@ -24,36 +22,36 @@ class ContactPoint(element.Element):
         :param bool strict: If True (the default), invalid variables will raise a TypeError
         """
         
-        self.period = None
-        """ Time period when the contact point was/is in use.
-        Type `Period` (represented as `dict` in JSON). """
-        
-        self.rank = None
-        """ Specify preferred order of use (1 = highest).
-        Type `int`. """
-        
         self.system = None
         """ phone | fax | email | pager | url | sms | other.
-        Type `str`. """
-        
-        self.use = None
-        """ home | work | temp | old | mobile - purpose of this contact point.
         Type `str`. """
         
         self.value = None
         """ The actual contact point details.
         Type `str`. """
         
+        self.use = None
+        """ home | work | temp | old | mobile - purpose of this contact point.
+        Type `str`. """
+        
+        self.rank = None
+        """ Specify preferred order of use (1 = highest).
+        Type `int`. """
+        
+        self.period = None
+        """ Time period when the contact point was/is in use.
+        Type `Period` (represented as `dict` in JSON). """
+        
         super(ContactPoint, self).__init__(jsondict=jsondict, strict=strict)
     
     def elementProperties(self):
         js = super(ContactPoint, self).elementProperties()
         js.extend([
-            ("period", "period", period.Period, False, None, False),
-            ("rank", "rank", int, False, None, False),
             ("system", "system", str, False, None, False),
-            ("use", "use", str, False, None, False),
             ("value", "value", str, False, None, False),
+            ("use", "use", str, False, None, False),
+            ("rank", "rank", int, False, None, False),
+            ("period", "period", period.Period, False, None, False),
         ])
         return js
 

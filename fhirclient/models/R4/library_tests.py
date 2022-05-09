@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-05-07.
-#  2019, SMART Health IT.
+#  Generated from FHIR 4.0.1-9346c8cc45 on 2022-05-02.
+#  2022, SMART Health IT.
 
 
 import os
@@ -22,7 +22,7 @@ class LibraryTests(unittest.TestCase):
         return library.Library(js)
     
     def testLibrary1(self):
-        inst = self.instantiate_from("library-predecessor-example.json")
+        inst = self.instantiate_from("library-cms146-example.json")
         self.assertIsNotNone(inst, "Must have instantiated a Library instance")
         self.implLibrary1(inst)
         
@@ -32,41 +32,6 @@ class LibraryTests(unittest.TestCase):
         self.implLibrary1(inst2)
     
     def implLibrary1(self, inst):
-        self.assertEqual(inst.content[0].contentType, "text/cql")
-        self.assertEqual(inst.content[0].title, "FHIR Helpers")
-        self.assertEqual(inst.content[0].url, "library-fhir-helpers-content.cql")
-        self.assertEqual(inst.date.date, FHIRDate("2016-11-14").date)
-        self.assertEqual(inst.date.as_json(), "2016-11-14")
-        self.assertEqual(inst.description, "FHIR Helpers")
-        self.assertTrue(inst.experimental)
-        self.assertEqual(inst.id, "library-fhir-helpers-predecessor")
-        self.assertEqual(inst.identifier[0].use, "official")
-        self.assertEqual(inst.identifier[0].value, "FHIRHelpers")
-        self.assertEqual(inst.meta.tag[0].code, "HTEST")
-        self.assertEqual(inst.meta.tag[0].display, "test health data")
-        self.assertEqual(inst.meta.tag[0].system, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
-        self.assertEqual(inst.relatedArtifact[0].resource, "Library/fhir-model-definition")
-        self.assertEqual(inst.relatedArtifact[0].type, "depends-on")
-        self.assertEqual(inst.relatedArtifact[1].resource, "Library/library-fhir-helpers")
-        self.assertEqual(inst.relatedArtifact[1].type, "successor")
-        self.assertEqual(inst.status, "active")
-        self.assertEqual(inst.text.status, "generated")
-        self.assertEqual(inst.title, "FHIR Helpers")
-        self.assertEqual(inst.topic[0].text, "FHIR Helpers")
-        self.assertEqual(inst.type.coding[0].code, "logic-library")
-        self.assertEqual(inst.version, "1.6")
-    
-    def testLibrary2(self):
-        inst = self.instantiate_from("library-cms146-example.json")
-        self.assertIsNotNone(inst, "Must have instantiated a Library instance")
-        self.implLibrary2(inst)
-        
-        js = inst.as_json()
-        self.assertEqual("Library", js["resourceType"])
-        inst2 = library.Library(js)
-        self.implLibrary2(inst2)
-    
-    def implLibrary2(self, inst):
         self.assertEqual(inst.content[0].contentType, "text/cql")
         self.assertEqual(inst.content[0].url, "library-cms146-example-content.cql")
         self.assertEqual(inst.dataRequirement[0].type, "Patient")
@@ -124,6 +89,48 @@ class LibraryTests(unittest.TestCase):
         self.assertEqual(inst.type.coding[0].code, "logic-library")
         self.assertEqual(inst.version, "2.0.0")
     
+    def testLibrary2(self):
+        inst = self.instantiate_from("library-composition-example.json")
+        self.assertIsNotNone(inst, "Must have instantiated a Library instance")
+        self.implLibrary2(inst)
+        
+        js = inst.as_json()
+        self.assertEqual("Library", js["resourceType"])
+        inst2 = library.Library(js)
+        self.implLibrary2(inst2)
+    
+    def implLibrary2(self, inst):
+        self.assertEqual(inst.date.date, FHIRDate("2017-03-10").date)
+        self.assertEqual(inst.date.as_json(), "2017-03-10")
+        self.assertEqual(inst.description, "Artifacts required for implementation of Zika Virus Management")
+        self.assertEqual(inst.id, "composition-example")
+        self.assertEqual(inst.identifier[0].system, "http://example.org")
+        self.assertEqual(inst.identifier[0].use, "official")
+        self.assertEqual(inst.identifier[0].value, "Zika Artifacts")
+        self.assertEqual(inst.meta.tag[0].code, "HTEST")
+        self.assertEqual(inst.meta.tag[0].display, "test health data")
+        self.assertEqual(inst.meta.tag[0].system, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
+        self.assertEqual(inst.relatedArtifact[0].resource, "ActivityDefinition/administer-zika-virus-exposure-assessment")
+        self.assertEqual(inst.relatedArtifact[0].type, "composed-of")
+        self.assertEqual(inst.relatedArtifact[1].resource, "ActivityDefinition/order-serum-zika-dengue-virus-igm")
+        self.assertEqual(inst.relatedArtifact[1].type, "composed-of")
+        self.assertEqual(inst.relatedArtifact[2].resource, "ActivityDefinition/provide-mosquito-prevention-advice")
+        self.assertEqual(inst.relatedArtifact[2].type, "composed-of")
+        self.assertEqual(inst.relatedArtifact[3].resource, "Library/zika-virus-intervention-logic")
+        self.assertEqual(inst.relatedArtifact[3].type, "composed-of")
+        self.assertEqual(inst.relatedArtifact[4].resource, "PlanDefinition/zika-virus-intervention")
+        self.assertEqual(inst.relatedArtifact[4].type, "composed-of")
+        self.assertEqual(inst.relatedArtifact[5].resource, "Questionnaire/zika-virus-exposure-assessment")
+        self.assertEqual(inst.relatedArtifact[5].type, "composed-of")
+        self.assertEqual(inst.relatedArtifact[6].type, "derived-from")
+        self.assertEqual(inst.relatedArtifact[6].url, "https://www.cdc.gov/mmwr/volumes/65/wr/mm6539e1.htm?s_cid=mm6539e1_w")
+        self.assertEqual(inst.status, "draft")
+        self.assertEqual(inst.text.status, "generated")
+        self.assertEqual(inst.title, "Zika Artifacts")
+        self.assertEqual(inst.topic[0].text, "Zika Virus Management")
+        self.assertEqual(inst.type.coding[0].code, "asset-collection")
+        self.assertEqual(inst.version, "1.0.0")
+    
     def testLibrary3(self):
         inst = self.instantiate_from("library-example.json")
         self.assertIsNotNone(inst, "Must have instantiated a Library instance")
@@ -159,7 +166,7 @@ class LibraryTests(unittest.TestCase):
         self.assertEqual(inst.version, "2.0.0")
     
     def testLibrary4(self):
-        inst = self.instantiate_from("library-composition-example.json")
+        inst = self.instantiate_from("library-predecessor-example.json")
         self.assertIsNotNone(inst, "Must have instantiated a Library instance")
         self.implLibrary4(inst)
         
@@ -169,34 +176,27 @@ class LibraryTests(unittest.TestCase):
         self.implLibrary4(inst2)
     
     def implLibrary4(self, inst):
-        self.assertEqual(inst.date.date, FHIRDate("2017-03-10").date)
-        self.assertEqual(inst.date.as_json(), "2017-03-10")
-        self.assertEqual(inst.description, "Artifacts required for implementation of Zika Virus Management")
-        self.assertEqual(inst.id, "composition-example")
-        self.assertEqual(inst.identifier[0].system, "http://example.org")
+        self.assertEqual(inst.content[0].contentType, "text/cql")
+        self.assertEqual(inst.content[0].title, "FHIR Helpers")
+        self.assertEqual(inst.content[0].url, "library-fhir-helpers-content.cql")
+        self.assertEqual(inst.date.date, FHIRDate("2016-11-14").date)
+        self.assertEqual(inst.date.as_json(), "2016-11-14")
+        self.assertEqual(inst.description, "FHIR Helpers")
+        self.assertTrue(inst.experimental)
+        self.assertEqual(inst.id, "library-fhir-helpers-predecessor")
         self.assertEqual(inst.identifier[0].use, "official")
-        self.assertEqual(inst.identifier[0].value, "Zika Artifacts")
+        self.assertEqual(inst.identifier[0].value, "FHIRHelpers")
         self.assertEqual(inst.meta.tag[0].code, "HTEST")
         self.assertEqual(inst.meta.tag[0].display, "test health data")
         self.assertEqual(inst.meta.tag[0].system, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
-        self.assertEqual(inst.relatedArtifact[0].resource, "ActivityDefinition/administer-zika-virus-exposure-assessment")
-        self.assertEqual(inst.relatedArtifact[0].type, "composed-of")
-        self.assertEqual(inst.relatedArtifact[1].resource, "ActivityDefinition/order-serum-zika-dengue-virus-igm")
-        self.assertEqual(inst.relatedArtifact[1].type, "composed-of")
-        self.assertEqual(inst.relatedArtifact[2].resource, "ActivityDefinition/provide-mosquito-prevention-advice")
-        self.assertEqual(inst.relatedArtifact[2].type, "composed-of")
-        self.assertEqual(inst.relatedArtifact[3].resource, "Library/zika-virus-intervention-logic")
-        self.assertEqual(inst.relatedArtifact[3].type, "composed-of")
-        self.assertEqual(inst.relatedArtifact[4].resource, "PlanDefinition/zika-virus-intervention")
-        self.assertEqual(inst.relatedArtifact[4].type, "composed-of")
-        self.assertEqual(inst.relatedArtifact[5].resource, "Questionnaire/zika-virus-exposure-assessment")
-        self.assertEqual(inst.relatedArtifact[5].type, "composed-of")
-        self.assertEqual(inst.relatedArtifact[6].type, "derived-from")
-        self.assertEqual(inst.relatedArtifact[6].url, "https://www.cdc.gov/mmwr/volumes/65/wr/mm6539e1.htm?s_cid=mm6539e1_w")
-        self.assertEqual(inst.status, "draft")
+        self.assertEqual(inst.relatedArtifact[0].resource, "Library/fhir-model-definition")
+        self.assertEqual(inst.relatedArtifact[0].type, "depends-on")
+        self.assertEqual(inst.relatedArtifact[1].resource, "Library/library-fhir-helpers")
+        self.assertEqual(inst.relatedArtifact[1].type, "successor")
+        self.assertEqual(inst.status, "active")
         self.assertEqual(inst.text.status, "generated")
-        self.assertEqual(inst.title, "Zika Artifacts")
-        self.assertEqual(inst.topic[0].text, "Zika Virus Management")
-        self.assertEqual(inst.type.coding[0].code, "asset-collection")
-        self.assertEqual(inst.version, "1.0.0")
+        self.assertEqual(inst.title, "FHIR Helpers")
+        self.assertEqual(inst.topic[0].text, "FHIR Helpers")
+        self.assertEqual(inst.type.coding[0].code, "logic-library")
+        self.assertEqual(inst.version, "1.6")
 

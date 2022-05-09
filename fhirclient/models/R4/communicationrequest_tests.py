@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-05-07.
-#  2019, SMART Health IT.
+#  Generated from FHIR 4.0.1-9346c8cc45 on 2022-05-02.
+#  2022, SMART Health IT.
 
 
 import os
@@ -22,7 +22,7 @@ class CommunicationRequestTests(unittest.TestCase):
         return communicationrequest.CommunicationRequest(js)
     
     def testCommunicationRequest1(self):
-        inst = self.instantiate_from("communicationrequest-example.json")
+        inst = self.instantiate_from("communicationrequest-example-fm-solicit-attachment.json")
         self.assertIsNotNone(inst, "Must have instantiated a CommunicationRequest instance")
         self.implCommunicationRequest1(inst)
         
@@ -32,25 +32,6 @@ class CommunicationRequestTests(unittest.TestCase):
         self.implCommunicationRequest1(inst2)
     
     def implCommunicationRequest1(self, inst):
-        self.assertEqual(inst.id, "example")
-        self.assertEqual(inst.meta.tag[0].code, "HTEST")
-        self.assertEqual(inst.meta.tag[0].display, "test health data")
-        self.assertEqual(inst.meta.tag[0].system, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
-        self.assertEqual(inst.status, "active")
-        self.assertEqual(inst.text.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">To be filled out at a later time</div>")
-        self.assertEqual(inst.text.status, "generated")
-    
-    def testCommunicationRequest2(self):
-        inst = self.instantiate_from("communicationrequest-example-fm-solicit-attachment.json")
-        self.assertIsNotNone(inst, "Must have instantiated a CommunicationRequest instance")
-        self.implCommunicationRequest2(inst)
-        
-        js = inst.as_json()
-        self.assertEqual("CommunicationRequest", js["resourceType"])
-        inst2 = communicationrequest.CommunicationRequest(js)
-        self.implCommunicationRequest2(inst2)
-    
-    def implCommunicationRequest2(self, inst):
         self.assertEqual(inst.authoredOn.date, FHIRDate("2016-06-10T11:01:10-08:00").date)
         self.assertEqual(inst.authoredOn.as_json(), "2016-06-10T11:01:10-08:00")
         self.assertEqual(inst.category[0].coding[0].code, "SolicitedAttachmentRequest")
@@ -75,5 +56,24 @@ class CommunicationRequestTests(unittest.TestCase):
         self.assertEqual(inst.priority, "routine")
         self.assertEqual(inst.status, "active")
         self.assertEqual(inst.text.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Request for Accident Report</div>")
+        self.assertEqual(inst.text.status, "generated")
+    
+    def testCommunicationRequest2(self):
+        inst = self.instantiate_from("communicationrequest-example.json")
+        self.assertIsNotNone(inst, "Must have instantiated a CommunicationRequest instance")
+        self.implCommunicationRequest2(inst)
+        
+        js = inst.as_json()
+        self.assertEqual("CommunicationRequest", js["resourceType"])
+        inst2 = communicationrequest.CommunicationRequest(js)
+        self.implCommunicationRequest2(inst2)
+    
+    def implCommunicationRequest2(self, inst):
+        self.assertEqual(inst.id, "example")
+        self.assertEqual(inst.meta.tag[0].code, "HTEST")
+        self.assertEqual(inst.meta.tag[0].display, "test health data")
+        self.assertEqual(inst.meta.tag[0].system, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
+        self.assertEqual(inst.status, "active")
+        self.assertEqual(inst.text.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">To be filled out at a later time</div>")
         self.assertEqual(inst.text.status, "generated")
 

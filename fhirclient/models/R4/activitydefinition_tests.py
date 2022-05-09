@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-05-07.
-#  2019, SMART Health IT.
+#  Generated from FHIR 4.0.1-9346c8cc45 on 2022-05-02.
+#  2022, SMART Health IT.
 
 
 import os
@@ -22,7 +22,7 @@ class ActivityDefinitionTests(unittest.TestCase):
         return activitydefinition.ActivityDefinition(js)
     
     def testActivityDefinition1(self):
-        inst = self.instantiate_from("activitydefinition-predecessor-example.json")
+        inst = self.instantiate_from("activitydefinition-example.json")
         self.assertIsNotNone(inst, "Must have instantiated a ActivityDefinition instance")
         self.implActivityDefinition1(inst)
         
@@ -32,8 +32,8 @@ class ActivityDefinitionTests(unittest.TestCase):
         self.implActivityDefinition1(inst2)
     
     def implActivityDefinition1(self, inst):
-        self.assertEqual(inst.approvalDate.date, FHIRDate("2016-03-12").date)
-        self.assertEqual(inst.approvalDate.as_json(), "2016-03-12")
+        self.assertEqual(inst.approvalDate.date, FHIRDate("2017-03-01").date)
+        self.assertEqual(inst.approvalDate.as_json(), "2017-03-01")
         self.assertEqual(inst.author[0].name, "Motive Medical Intelligence")
         self.assertEqual(inst.author[0].telecom[0].system, "phone")
         self.assertEqual(inst.author[0].telecom[0].use, "work")
@@ -56,27 +56,27 @@ class ActivityDefinitionTests(unittest.TestCase):
         self.assertEqual(inst.description, "refer to primary care mental-health integrated care program for evaluation and treatment of mental health conditions now")
         self.assertEqual(inst.effectivePeriod.end.date, FHIRDate("2017-12-31").date)
         self.assertEqual(inst.effectivePeriod.end.as_json(), "2017-12-31")
-        self.assertEqual(inst.effectivePeriod.start.date, FHIRDate("2016-01-01").date)
-        self.assertEqual(inst.effectivePeriod.start.as_json(), "2016-01-01")
+        self.assertEqual(inst.effectivePeriod.start.date, FHIRDate("2017-03-01").date)
+        self.assertEqual(inst.effectivePeriod.start.as_json(), "2017-03-01")
         self.assertTrue(inst.experimental)
-        self.assertEqual(inst.id, "referralPrimaryCareMentalHealth-initial")
+        self.assertEqual(inst.id, "referralPrimaryCareMentalHealth")
         self.assertEqual(inst.identifier[0].system, "http://motivemi.com/artifacts")
         self.assertEqual(inst.identifier[0].use, "official")
         self.assertEqual(inst.identifier[0].value, "referralPrimaryCareMentalHealth")
         self.assertEqual(inst.jurisdiction[0].coding[0].code, "US")
         self.assertEqual(inst.jurisdiction[0].coding[0].system, "urn:iso:std:iso:3166")
         self.assertEqual(inst.kind, "ServiceRequest")
-        self.assertEqual(inst.lastReviewDate.date, FHIRDate("2016-08-15").date)
-        self.assertEqual(inst.lastReviewDate.as_json(), "2016-08-15")
+        self.assertEqual(inst.lastReviewDate.date, FHIRDate("2017-03-01").date)
+        self.assertEqual(inst.lastReviewDate.as_json(), "2017-03-01")
         self.assertEqual(inst.name, "ReferralPrimaryCareMentalHealth")
         self.assertEqual(inst.participant[0].type, "practitioner")
         self.assertEqual(inst.publisher, "Motive Medical Intelligence")
         self.assertEqual(inst.relatedArtifact[0].display, "Practice Guideline for the Treatment of Patients with Major Depressive Disorder")
         self.assertEqual(inst.relatedArtifact[0].type, "citation")
         self.assertEqual(inst.relatedArtifact[0].url, "http://psychiatryonline.org/pb/assets/raw/sitewide/practice_guidelines/guidelines/mdd.pdf")
-        self.assertEqual(inst.relatedArtifact[1].resource, "ActivityDefinition/referralPrimaryCareMentalHealth")
-        self.assertEqual(inst.relatedArtifact[1].type, "successor")
-        self.assertEqual(inst.status, "retired")
+        self.assertEqual(inst.relatedArtifact[1].resource, "ActivityDefinition/referralPrimaryCareMentalHealth-initial")
+        self.assertEqual(inst.relatedArtifact[1].type, "predecessor")
+        self.assertEqual(inst.status, "active")
         self.assertEqual(inst.text.status, "generated")
         self.assertEqual(inst.title, "Referral to Primary Care Mental Health")
         self.assertEqual(inst.topic[0].text, "Mental Health Referral")
@@ -116,7 +116,7 @@ class ActivityDefinitionTests(unittest.TestCase):
         self.assertEqual(inst.useContext[6].valueCodeableConcept.coding[0].code, "440655000")
         self.assertEqual(inst.useContext[6].valueCodeableConcept.coding[0].display, "Outpatient environment")
         self.assertEqual(inst.useContext[6].valueCodeableConcept.coding[0].system, "http://snomed.info/sct")
-        self.assertEqual(inst.version, "1.0.0")
+        self.assertEqual(inst.version, "1.1.0")
     
     def testActivityDefinition2(self):
         inst = self.instantiate_from("activitydefinition-medicationorder-example.json")
@@ -236,7 +236,7 @@ class ActivityDefinitionTests(unittest.TestCase):
         self.assertEqual(inst.version, "1.0.0")
     
     def testActivityDefinition3(self):
-        inst = self.instantiate_from("activitydefinition-example.json")
+        inst = self.instantiate_from("activitydefinition-predecessor-example.json")
         self.assertIsNotNone(inst, "Must have instantiated a ActivityDefinition instance")
         self.implActivityDefinition3(inst)
         
@@ -246,8 +246,8 @@ class ActivityDefinitionTests(unittest.TestCase):
         self.implActivityDefinition3(inst2)
     
     def implActivityDefinition3(self, inst):
-        self.assertEqual(inst.approvalDate.date, FHIRDate("2017-03-01").date)
-        self.assertEqual(inst.approvalDate.as_json(), "2017-03-01")
+        self.assertEqual(inst.approvalDate.date, FHIRDate("2016-03-12").date)
+        self.assertEqual(inst.approvalDate.as_json(), "2016-03-12")
         self.assertEqual(inst.author[0].name, "Motive Medical Intelligence")
         self.assertEqual(inst.author[0].telecom[0].system, "phone")
         self.assertEqual(inst.author[0].telecom[0].use, "work")
@@ -270,27 +270,27 @@ class ActivityDefinitionTests(unittest.TestCase):
         self.assertEqual(inst.description, "refer to primary care mental-health integrated care program for evaluation and treatment of mental health conditions now")
         self.assertEqual(inst.effectivePeriod.end.date, FHIRDate("2017-12-31").date)
         self.assertEqual(inst.effectivePeriod.end.as_json(), "2017-12-31")
-        self.assertEqual(inst.effectivePeriod.start.date, FHIRDate("2017-03-01").date)
-        self.assertEqual(inst.effectivePeriod.start.as_json(), "2017-03-01")
+        self.assertEqual(inst.effectivePeriod.start.date, FHIRDate("2016-01-01").date)
+        self.assertEqual(inst.effectivePeriod.start.as_json(), "2016-01-01")
         self.assertTrue(inst.experimental)
-        self.assertEqual(inst.id, "referralPrimaryCareMentalHealth")
+        self.assertEqual(inst.id, "referralPrimaryCareMentalHealth-initial")
         self.assertEqual(inst.identifier[0].system, "http://motivemi.com/artifacts")
         self.assertEqual(inst.identifier[0].use, "official")
         self.assertEqual(inst.identifier[0].value, "referralPrimaryCareMentalHealth")
         self.assertEqual(inst.jurisdiction[0].coding[0].code, "US")
         self.assertEqual(inst.jurisdiction[0].coding[0].system, "urn:iso:std:iso:3166")
         self.assertEqual(inst.kind, "ServiceRequest")
-        self.assertEqual(inst.lastReviewDate.date, FHIRDate("2017-03-01").date)
-        self.assertEqual(inst.lastReviewDate.as_json(), "2017-03-01")
+        self.assertEqual(inst.lastReviewDate.date, FHIRDate("2016-08-15").date)
+        self.assertEqual(inst.lastReviewDate.as_json(), "2016-08-15")
         self.assertEqual(inst.name, "ReferralPrimaryCareMentalHealth")
         self.assertEqual(inst.participant[0].type, "practitioner")
         self.assertEqual(inst.publisher, "Motive Medical Intelligence")
         self.assertEqual(inst.relatedArtifact[0].display, "Practice Guideline for the Treatment of Patients with Major Depressive Disorder")
         self.assertEqual(inst.relatedArtifact[0].type, "citation")
         self.assertEqual(inst.relatedArtifact[0].url, "http://psychiatryonline.org/pb/assets/raw/sitewide/practice_guidelines/guidelines/mdd.pdf")
-        self.assertEqual(inst.relatedArtifact[1].resource, "ActivityDefinition/referralPrimaryCareMentalHealth-initial")
-        self.assertEqual(inst.relatedArtifact[1].type, "predecessor")
-        self.assertEqual(inst.status, "active")
+        self.assertEqual(inst.relatedArtifact[1].resource, "ActivityDefinition/referralPrimaryCareMentalHealth")
+        self.assertEqual(inst.relatedArtifact[1].type, "successor")
+        self.assertEqual(inst.status, "retired")
         self.assertEqual(inst.text.status, "generated")
         self.assertEqual(inst.title, "Referral to Primary Care Mental Health")
         self.assertEqual(inst.topic[0].text, "Mental Health Referral")
@@ -330,7 +330,7 @@ class ActivityDefinitionTests(unittest.TestCase):
         self.assertEqual(inst.useContext[6].valueCodeableConcept.coding[0].code, "440655000")
         self.assertEqual(inst.useContext[6].valueCodeableConcept.coding[0].display, "Outpatient environment")
         self.assertEqual(inst.useContext[6].valueCodeableConcept.coding[0].system, "http://snomed.info/sct")
-        self.assertEqual(inst.version, "1.1.0")
+        self.assertEqual(inst.version, "1.0.0")
     
     def testActivityDefinition4(self):
         inst = self.instantiate_from("activitydefinition-servicerequest-example.json")

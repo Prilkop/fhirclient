@@ -2,7 +2,7 @@
 
 import logging
 
-from server import FHIRServer, FHIRUnauthorizedException, FHIRNotFoundException
+from .server import FHIRServer, FHIRUnauthorizedException, FHIRNotFoundException
 
 __version__ = '4.0.0'
 __author__ = 'SMART Platforms Team'
@@ -75,6 +75,7 @@ class FHIRClient(object):
             self.patient_id = settings.get('patient_id')
             self.scope = settings.get('scope', self.scope)
             self.launch_token = settings.get('launch_token')
+            self.access_token = settings.get('access_token')
             self.server = FHIRServer(self, base_uri=settings['api_base'])
         else:
             raise Exception("Must either supply settings or a state upon client initialization")
@@ -213,6 +214,7 @@ class FHIRClient(object):
             'server': self.server.state,
             'launch_token': self.launch_token,
             'launch_context': self.launch_context,
+            'access_token': self.access_token,
         }
     
     def from_state(self, state):
@@ -224,6 +226,7 @@ class FHIRClient(object):
         self.patient_id = state.get('patient_id') or self.patient_id
         self.launch_token = state.get('launch_token') or self.launch_token
         self.launch_context = state.get('launch_context') or self.launch_context
+        self.access_token = state.get('access_token') or self.access_token
         self.server = FHIRServer(self, state=state.get('server'))
     
     def save_state (self):

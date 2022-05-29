@@ -187,7 +187,6 @@ class FHIRElementFactory(object):
             None: Element
         }
 
-
     @classmethod
     def get_resource_class(cls, resource_type):
         """ Return a resource class for the type correlating to "resource_type".
@@ -210,3 +209,22 @@ class FHIRElementFactory(object):
         """
         klass = cls.get_resource_class(resource_type)
         return klass(jsondict)
+
+    @classmethod
+    def read_from(cls, path, server):
+        """ Requests data from the given REST path on the server and creates
+        an instance of based on the path.
+
+        :param str path: The REST path to read from
+        :param FHIRServer server: An instance of a FHIR server or compatible class
+        :returns: An instance of the receiving class
+        """
+        if not path:
+            raise Exception("Cannot read resource without REST path")
+        if server is None:
+            raise Exception("Cannot read resource without server instance")
+
+        resource_type = path.split('/')[0]
+        klass = cls.get_resource_class(resource_type)
+        return klass.read_from(path, server)
+

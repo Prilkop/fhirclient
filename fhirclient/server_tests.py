@@ -7,7 +7,7 @@ import json
 import shutil
 import server
 import unittest
-import models.fhirabstractbase as fabst
+from .models.R4 import fhirabstractbase as fabst
 
 
 class TestServer(unittest.TestCase):
@@ -19,7 +19,7 @@ class TestServer(unittest.TestCase):
     def testValidCapabilityStatement(self):
         shutil.copyfile('test_metadata_valid.json', 'metadata')
         mock = MockServer()
-        mock.get_capability()
+        mock.get_metadata()
         
         self.assertIsNotNone(mock.auth._registration_uri)
         self.assertIsNotNone(mock.auth._authorize_uri)
@@ -28,7 +28,7 @@ class TestServer(unittest.TestCase):
     def testStateConservation(self):
         shutil.copyfile('test_metadata_valid.json', 'metadata')
         mock = MockServer()
-        self.assertIsNotNone(mock.capabilityStatement)
+        self.assertIsNotNone(mock.metadata)
         
         fhir = server.FHIRServer(None, state=mock.state)
         self.assertIsNotNone(fhir.auth._registration_uri)
@@ -39,7 +39,7 @@ class TestServer(unittest.TestCase):
         shutil.copyfile('test_metadata_invalid.json', 'metadata')
         mock = MockServer()
         try:
-            mock.get_capability()
+            mock.get_metadata()
             self.assertTrue(False, "Must have thrown exception")
         except fabst.FHIRValidationError as e:
             self.assertEqual(4, len(e.errors))
